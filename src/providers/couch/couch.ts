@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Request, RequestMethod, Headers } from '@angular/http';
+import { Http, Request, RequestMethod, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
@@ -17,7 +17,7 @@ export class CouchDbServices {
   data: any = null;
   dataRequest: any = null;
   credHeaders: Headers;
-  constructor(public http: Http,public local: Storage) {
+  constructor(public http: Http, public local: Storage) {
     this.credHeaders = new Headers();
     this.credHeaders.append('Content-Type', 'application/json');
     this.credHeaders.append('Accept', 'application/json;charset=utf-8');
@@ -75,7 +75,7 @@ export class CouchDbServices {
           this.dataRequest = res.json();
           //var headers = res.headers;
           //var setCookieHeader = headers.get('Set-Cookie');
-          this.local.set('id_user', JSON.stringify(this.dataRequest)).then(response=>{});
+          this.local.set('id_user', JSON.stringify(this.dataRequest)).then(response => { });
           resolve(this.dataRequest);
         }, error => {
           console.log("USER : User request error", error);
@@ -249,7 +249,7 @@ export class CouchDbServices {
   addDoc(base, data, params?, file?) {
     return new Promise((resolve, reject) => {
       if (!params) params = defaultParams;
-      var id=data['id'];
+      var id = data['id'];
       var rootUrl = 'http://' + defaultParams.srv + '/' + base + '/' + id;
       this.credHeaders.delete('Authorization');
       this.credHeaders.append('Authorization', 'Basic ' + window.btoa(params.user + ':' + params.password));

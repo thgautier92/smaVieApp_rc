@@ -18,7 +18,7 @@ export class ValuesPipe implements PipeTransform {
     }
     return a;
   }
-}
+};
 @Pipe({ name: 'arrayByKey', pure: false })
 export class arrayByKeyPipe implements PipeTransform {
   transform(collection: any, occurs: any): any {
@@ -28,7 +28,7 @@ export class arrayByKeyPipe implements PipeTransform {
       });
     return a;
   }
-}
+};
 @Pipe({ name: 'binaryData' })
 export class binaryData {
   // Transform is the new "return function(value, args)" in Angular 1.x
@@ -40,7 +40,7 @@ export class binaryData {
     var file = new Blob([value], { type: mime[0] });
     return file
   }
-}
+};
 @Pipe({ name: 'groupBy' })
 export class groupBy implements PipeTransform {
   transform(collection: any, getter: any, subgetter?: any, ssubgetter?: any,sub?:number): any {
@@ -59,17 +59,17 @@ export class groupBy implements PipeTransform {
     };
     return result;
   }
-}
+};
 @Pipe({ name: 'keys' })
 export class KeysPipe implements PipeTransform {
-  transform(value, args: string[]): any {
+  transform(value, args?: string[]): any {
     let keys = [];
     for (let key in value) {
       keys.push({ key: key, value: value[key] });
     }
     return keys;
   }
-}
+};
 @Pipe({ name: 'textToDate' })
 export class textToDate implements PipeTransform {
   transform(value): any {
@@ -80,7 +80,7 @@ export class textToDate implements PipeTransform {
     ret = { "date": d, "time": t };
     return ret;
   }
-}
+};
 @Pipe({ name: 'maxByKey', pure: false })
 export class maxByKeyPipe implements PipeTransform {
   transform(collection: any, key: any): any {
@@ -90,4 +90,4 @@ export class maxByKeyPipe implements PipeTransform {
       });
     return a;
   }
-}
+};

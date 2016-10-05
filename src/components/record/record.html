@@ -5,7 +5,7 @@
   for more info on Angular 2 Components.
 -->
 <div [style.background-color]="checkColor" text-left>
-  <ion-list-header *ngIf="data" no-padding>
+  <ion-list-header *ngIf="okVisu" no-padding>
     <ion-badge item-right>Niveau {{levelOpen}}</ion-badge>
     <ion-range no-padding item-left min="0" max="10" snaps="true" [(ngModel)]="levelOpen" color="secondary" (ngModelChange)="levelChange()">
       <ion-label range-left>

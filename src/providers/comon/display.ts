@@ -15,9 +15,13 @@ export class DisplayTools {
         public alertCtrl: AlertController) {
         this.nav = nav;
     }
-    displayLoading(msg, duration?) {
-        if (!duration) duration = 5;
-        let act = this.loadingCtrl.create({ content: msg, duration: duration * 1000 });
+    displayLoading(msg, second?) {
+        let opt = { content: msg };
+        if (second) {
+            opt['duration'] = second * 1000;
+            opt['dismissOnPageChange'] = true;
+        }
+        let act = this.loadingCtrl.create(opt);
         act.present();
         return act.instance;
     }
@@ -28,7 +32,7 @@ export class DisplayTools {
             duration: duration,
             showCloseButton: true,
             closeButtonText: "Fermer",
-            dismissOnPageChange: true,
+            dismissOnPageChange: false,
             cssClass: "toastInfo"
         });
         toast.onDidDismiss(() => {
