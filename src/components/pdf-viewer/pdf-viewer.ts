@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, Input, OnChanges} from '@angular/core';
+import { Component, ViewChild, ElementRef, Input} from '@angular/core';
+
 declare var PDFJS: any;
 /*
   Generated class for the Record component.
@@ -9,14 +10,13 @@ declare var PDFJS: any;
 @Component({
   selector: 'pdfview',
   templateUrl: 'pdf-viewer.html',
-  outputs: [],
 })
 
-export class PdfViewer implements OnChanges {
+export class PdfViewer {
   pdfDiv: HTMLCanvasElement;
   @ViewChild('result') result: ElementRef;
   @Input() pdfSrc: any;
-  rootDoc: any = 'data/docs/';
+  rootDoc: any = 'assets/data/docs/';
   pdfDoc: any;
   pageNum: any;
   pageCount: any;
@@ -45,7 +45,7 @@ export class PdfViewer implements OnChanges {
   }
   ngOnInit() {
     this.pdfDiv = this.result.nativeElement;
-    PDFJS.workerSrc = 'build/js/pdf.worker.js';
+    PDFJS.workerSrc = 'build/pdf.worker.js';
     this.pdfDoc = null;
     this.pageNum = 1;
     this.pageCount = 0;
@@ -57,7 +57,7 @@ export class PdfViewer implements OnChanges {
   }
   ngOnChanges(changes: any) {
     //console.log(changes);
-    var url = "data/docs/" + this.pdfSrc;
+    var url = this.rootDoc + this.pdfSrc;
     // read Doc
     console.log(url);
     PDFJS.getDocument(url).then(pdfDoc_ => {

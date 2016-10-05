@@ -59,17 +59,18 @@ import { Simu } from '../providers/simu/simu';
     Concurrents,
     Decouverte,
     DiagConseil,
-    OptionCopier,
-    OptionPieces,
+    OptionCopier,OptionPieces,
     Patrimoine,
     ProfilRisque,
     Signature,
     Synthese,
     SignApi,
     Start,
-    Synchro, StatSynchroModal,
+    Synchro, StatSynchroModal,Stat,
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
-    Record
+    PdfViewer,
+    Record,
+    FlexDisplay,FlexInput,FlexList
   ],
   imports: [
     IonicModule.forRoot(MyApp)

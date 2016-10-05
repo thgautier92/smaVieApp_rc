@@ -5,14 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>auth</ion-title>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-title>Authentifiez-vous</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -36,7 +31,7 @@
         <button ion-button color="clear" (click)="createAccount()"><ion-icon name="people"></ion-icon>Vous n'avez pas de compte ?<br>Créer le...</button>
     </div>
     <div [hidden]="!isAuth">
-      <img src="img/logo_smavie_actu2.jpg">
+      <img src="assets/img/logo_smavie_actu2.jpg">
       <div padding text-center>
         <h1>Bienvenue.</h1>
         <button ion-button block (click)="restart()">Commencer</button>

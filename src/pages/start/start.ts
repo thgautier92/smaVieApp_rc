@@ -17,7 +17,7 @@ declare var PouchDB: any;
 @Component({
   selector: 'page-start',
   templateUrl: 'start.html',
-  providers:[CouchDbServices,DisplayTools]
+  providers: [CouchDbServices, DisplayTools]
 })
 export class Start {
   srvInfo: any;
@@ -26,7 +26,7 @@ export class Start {
   db: any;
   docs: any;
   params: any;
-  constructor(public nav:NavController,public display: DisplayTools, public couch: CouchDbServices) {
+  constructor(public navCtrl: NavController, public display: DisplayTools, public couch: CouchDbServices) {
     //this.params = couch.getParams();
     //console.log(this.params);
     this.docs = [];
@@ -45,12 +45,12 @@ export class Start {
       console.error(error);
       this.userData = null;
       this.base = 'demo';
-      this.display.displayToast("Veuillez vous identifier ! Mode démo activé");
+      this.display.displayToast("Veuillez vous identifier ! Mode démo activé", 1);
       this.loadBase(this.base);
     });
   }
   loadBase(base) {
-    let loading = this.display.displayLoading("Activation de la base " + base, 1);
+    let loading = this.display.displayLoading("Activation de la base " + base, 5);
     this.db = new PouchDB(base);
     this.docs = []
     this.showBase();
@@ -75,8 +75,12 @@ export class Start {
   };
   start(item) {
     // start the RDV with data
-    //console.log("Start RDV with item ", item);
+    console.log("Start RDV with item ", item);
     item['doc']['rdvEnded'] = false;
-    this.nav.setRoot(Rdv, { base: this.base, rdvId: item.id });
+    this.navCtrl.setRoot(Rdv, { base: this.base, rdvId: item.id }).then(response => { 
+      console.log("Navigation reponse",response);
+    }, error => {
+      console.log("Navigation error",error);
+    });
   }
 }
