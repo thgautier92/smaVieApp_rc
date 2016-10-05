@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ModalController, NavParams, Events, MenuController, AlertController } from 'ionic-angular';
+//import { ModalController} from 'ionic-angular';
 //import {FormBuilder} from '@angular/forms';
-import { Rdv } from '../rdv/rdv';
+import { RdvPage } from '../rdv/rdv';
 import { CouchDbServices } from '../../providers/couch/couch';
 //import {Paramsdata} from '../../providers/params-data/params-data';
 import { DisplayTools } from '../../providers/comon/display';
-import { groupBy, KeysPipe, textToDate } from '../../pipes/comon';
+import { groupBy, KeysPipe } from '../../pipes/comon';
 declare var PouchDB: any;
 /*
   Generated class for the Start page.
@@ -77,10 +77,11 @@ export class Start {
     // start the RDV with data
     console.log("Start RDV with item ", item);
     item['doc']['rdvEnded'] = false;
-    this.navCtrl.setRoot(Rdv, { base: this.base, rdvId: item.id }).then(response => { 
-      console.log("Navigation reponse",response);
+    let data={ base: this.base, rdvId: item.id };
+    this.navCtrl.setRoot(RdvPage,data ).then(response => {
+      console.log("Navigation reponse", response);
     }, error => {
-      console.log("Navigation error",error);
+      console.log("Navigation error", error);
     });
   }
 }

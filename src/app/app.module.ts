@@ -12,7 +12,7 @@ import { Contact } from '../pages/contact/contact';
 import { Documents, ViewPage } from '../pages/documents/documents';
 import { Home } from '../pages/home/home';
 // Rdv pages
-import { Rdv } from '../pages/rdv/rdv';
+import { RdvPage } from '../pages/rdv/rdv';
 import { Concurrents } from '../pages/rdv/concurrents/concurrents';
 import { Decouverte } from '../pages/rdv/decouverte/decouverte';
 import { DiagConseil } from '../pages/rdv/diag-conseil/diag-conseil';
@@ -55,7 +55,7 @@ import { Simu } from '../providers/simu/simu';
     Contact,
     Documents, ViewPage,
     Home,
-    Rdv,
+    RdvPage,
     Concurrents,
     Decouverte,
     DiagConseil,
@@ -85,7 +85,7 @@ import { Simu } from '../providers/simu/simu';
     Contact,
     Documents, ViewPage,
     Home,
-    Rdv,
+    RdvPage,
     Concurrents,
     Decouverte,
     DiagConseil,

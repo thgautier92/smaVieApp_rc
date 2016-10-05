@@ -1,9 +1,7 @@
-import { Component,} from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Platform, NavParams, Events, MenuController, AlertController } from 'ionic-angular';
-import { ModalController} from 'ionic-angular';
-
-
+import { Platform, NavParams, Events, AlertController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { FormBuilder } from '@angular/forms';
 //import { groupBy, ValuesPipe, KeysPipe, textToDate } from '../../pipes/comon';
 import { CouchDbServices } from '../../providers/couch/couch';
@@ -11,17 +9,17 @@ import { Paramsdata } from '../../providers/params-data/params-data';
 import { DisplayTools } from '../../providers/comon/display';
 
 import { Home } from '../home/home';
-import { Synthese } from './synthese/synthese';
-import { DiagConseil } from './diag-conseil/diag-conseil';
-import { Decouverte } from './decouverte/decouverte';
-import { Patrimoine } from './patrimoine/patrimoine';
-//import { ProfilRisque } from './profil-risque/profil-risque';
 import { Concurrents } from './concurrents/concurrents';
-import { Souscription } from './souscription/souscription';
-import { Signature } from './signature/signature';
-import { Simuler } from './simuler/simuler';
+import { Decouverte } from './decouverte/decouverte';
+import { DiagConseil } from './diag-conseil/diag-conseil';
 //import { OptionCopier } from './option-copier/option-copier';
 import { OptionPieces } from './option-pieces/option-pieces';
+import { Patrimoine } from './patrimoine/patrimoine';
+import { ProfilRisque } from './profil-risque/profil-risque';
+import { Signature } from './signature/signature';
+import { Simuler } from './simuler/simuler';
+import { Souscription } from './souscription/souscription';
+import { Synthese } from './synthese/synthese';
 
 declare var PouchDB: any;
 
@@ -34,9 +32,8 @@ declare var PouchDB: any;
 @Component({
   selector: 'page-rdv',
   templateUrl: 'rdv.html',
-
 })
-export class Rdv {
+export class RdvPage {
   db: any;
   base: any;
   refStatus: any = []
@@ -48,12 +45,16 @@ export class Rdv {
   rdvId: any;
   dataMenu: any;
   rdvMenu: any;
-  constructor(public platform: Platform, public nav: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController, public navParams: NavParams, public events: Events, public menuOpt: MenuController,
-    public display: DisplayTools, public couch: CouchDbServices,
-    public paramsApi: Paramsdata, private fb: FormBuilder) {
+  constructor(public platform: Platform,
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    public navParams: NavParams,
+    public events: Events,
+    public display: DisplayTools, public couch: CouchDbServices) {
     this.base = navParams.get("base");
     this.rdvId = navParams.get("rdvId");
-    console.log("RDV Start",this.rdvId);
+    console.log("RDV Start", this.rdvId);
     this.db = new PouchDB(this.base);
     this.refStatus = [
       { "code": "hold", "lib": "Attente", "color": "danger" },
@@ -186,7 +187,7 @@ export class Rdv {
     if (okEnd) {
       this.currentRdv.rdv['status'] = "Terminé";
       this.saveData(this.currentRdv);
-      this.nav.setRoot(Home);
+      this.navCtrl.setRoot(Home);
     } else {
       let alert = this.alertCtrl.create({
         title: "Confirmer la fin du RDV",
@@ -203,7 +204,7 @@ export class Rdv {
             handler: () => {
               this.currentRdv.rdv['status'] = "Terminé";
               this.saveData(this.currentRdv);
-              this.nav.setRoot(Home);
+              this.navCtrl.setRoot(Home);
             }
           },
           {
@@ -211,7 +212,7 @@ export class Rdv {
             handler: () => {
               this.currentRdv.rdv['status'] = "Abandonné";
               this.saveData(this.currentRdv);
-              this.nav.setRoot(Home);
+              this.navCtrl.setRoot(Home);
             }
           }
         ]
@@ -221,13 +222,13 @@ export class Rdv {
   }
   // Navigation Menu
   callMenu(item) {
+    let modal = this.modalCtrl.create(item.page, this.currentContext);
     switch (item['nav']) {
       case "dialog":
-        let modal = this.modalCtrl.create(item.page, this.currentContext);
         modal.present();
         break;
       case "page":
-        this.nav.push(item.page, this.currentContext);
+        this.navCtrl.push(item.page, this.currentContext);
         break;
       default:
     }

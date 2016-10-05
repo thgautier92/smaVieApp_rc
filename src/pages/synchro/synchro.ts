@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 import { CouchDbServices } from '../../providers/couch/couch';
 import { DisplayTools } from '../../providers/comon/display';
-import {Record} from '../../components/record/record';
+//import {Record} from '../../components/record/record';
 
 declare var PouchDB: any;
 /*
@@ -54,7 +54,7 @@ export class Synchro {
   }
   loadBase(params) {
     //console.log(params);
-    let loading = this.display.displayLoading("Activation de la base " + params.base);
+    let loading = this.display.displayLoading("Activation de la base " + params.base,5);
     this.sync = { "start": false, "info": false, "error": false, "stats": false, "timer": false };
     this.db = new PouchDB(params.base);
     this.remoteCouch = 'http://' + this.params.user + ':' + this.params.password + '@' + this.params.srv + '/' + this.params.base;

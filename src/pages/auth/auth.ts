@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController,ViewController,ToastController,Events } from 'ionic-angular';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NavController, ViewController, ToastController, Events } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { CouchDbServices } from '../../providers/couch/couch';
 import { Home } from '../home/home';
@@ -16,12 +16,12 @@ import { Home } from '../home/home';
   templateUrl: 'auth.html'
 })
 export class Auth {
-authType: string = "login";
+  authType: string = "login";
   user: string;
   isAut: boolean = false;
   loginCreds: any;
   signupCreds: any;
-  constructor(public navCtrl: NavController,public local: Storage, private fb: FormBuilder,public events:Events,public toastCtrl:ToastController, public couch: CouchDbServices) {}
+  constructor(public navCtrl: NavController, public local: Storage, private fb: FormBuilder, public events: Events, public toastCtrl: ToastController, public couch: CouchDbServices) { }
 
   ionViewDidLoad() {
     console.log('Hello Auth Page');
@@ -36,7 +36,7 @@ authType: string = "login";
       ])]
     });
   }
-    login(credentials) {
+  login(credentials) {
     //console.log(credentials);
     this.couch.openSession(credentials, null).then(response => {
       //console.log(response);

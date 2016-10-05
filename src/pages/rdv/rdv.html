@@ -5,23 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>Rdv #{{rdvId}} - {{titleRdv}}</ion-title>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-menu type="overlay" danger id="menuRdv" [content]="contentRdv" side="right">
-  <ion-toolbar danger>
+<ion-menu type="overlay" id="menuRdv" [content]="contentRdv" side="right">
+  <ion-toolbar color="danger">
     <ion-title>
       <ion-icon name="options"></ion-icon> Options</ion-title>
-    <ion-buttons start>
-      <button menuClose="menuRdv">Fermer</button>
+    <ion-buttons color="start">
+      <button ion-button menuClose="menuRdv">Fermer</button>
     </ion-buttons>
   </ion-toolbar>
   <ion-content>
@@ -39,7 +35,7 @@
       <button menuClose="menuRdv" ion-item *ngFor="let opt of rdvMenu" (click)="callMenu(opt)" detail-push>
         <ion-icon *ngIf="opt.nav!=''" item-left name="{{opt.icon}}"></ion-icon>{{opt.lib}}
         </button>
-      <button full danger menuClose="menuRdv" (click)="rdvEnd()"><ion-icon item-left name="contacts"></ion-icon> Terminer le RDV</button>
+      <button ion-button full color="danger" menuClose="menuRdv" (click)="rdvEnd()"><ion-icon item-left name="contacts"></ion-icon> Terminer le RDV</button>
     </ion-list>
   </ion-content>
 </ion-menu>
