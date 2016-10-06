@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input, } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 
 declare var JSONFormatter: any;
 /*

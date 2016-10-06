@@ -25,7 +25,7 @@ export class FlexInput implements OnInit, OnChanges {
   dataNonInput: any = {};     // data added outside the generic form
   popupWindow: any = null;    // windows object, open for simulation
   simuExec: boolean = false;  // flag for exec simulation 
-  @Input() idPageIn: any;
+  @Input() idPage: any;
   @Input() idForm: any;
   @Input() dataIn: Object;
   @Input() idClient: any;
@@ -34,7 +34,7 @@ export class FlexInput implements OnInit, OnChanges {
     this.form = this.fb.group({});
   }
   ngOnInit() {
-    //console.log("==> Data passed to component : ", this.idPageIn, this.idForm, this.dataIn, this.idClient);
+    //console.log("==> Data passed to component : ", this.idPage, this.idForm, this.dataIn, this.idClient);
   };
   ngOnChanges(changes: any) {
     //console.log("Data Changes", changes);
@@ -151,9 +151,9 @@ export class FlexInput implements OnInit, OnChanges {
       this.events.publish('rdvSave', this.dataIn);
       this.events.publish('form_update', { "idForm": this.idForm, "dataForm": dForm });
     }
-    let evtData = { idPage: this.idPageIn, form: this.selectedForm, status: formStatus };
+    let evtData = { idPage: this.idPage, form: this.selectedForm, status: formStatus };
     //console.log("Event data", evtData);
-    this.events.publish('rdvStatus_' + this.idPageIn, evtData);
+    this.events.publish('rdvStatus_' + this.idPage, evtData);
   }
   // ===== External Simulator with params ====
   openSimu(url) {

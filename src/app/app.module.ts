@@ -12,7 +12,7 @@ import { Contact } from '../pages/contact/contact';
 import { Documents, ViewPage } from '../pages/documents/documents';
 import { Home } from '../pages/home/home';
 // Rdv pages
-import { RdvPage } from '../pages/rdv/rdv';
+import { Rdv } from '../pages/rdv/rdv';
 import { Concurrents } from '../pages/rdv/concurrents/concurrents';
 import { Decouverte } from '../pages/rdv/decouverte/decouverte';
 import { DiagConseil } from '../pages/rdv/diag-conseil/diag-conseil';
@@ -21,6 +21,8 @@ import { OptionPieces } from '../pages/rdv/option-pieces/option-pieces';
 import { Patrimoine } from '../pages/rdv/patrimoine/patrimoine';
 import { ProfilRisque } from '../pages/rdv/profil-risque/profil-risque';
 import { Signature } from '../pages/rdv/signature/signature';
+import { Simuler } from '../pages/rdv/simuler/simuler';
+import { Souscription } from '../pages/rdv/souscription/souscription';
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
 import { SignApi } from '../pages/sign-api/sign-api';
@@ -31,7 +33,7 @@ import { ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe
 // components
 import { FlexDisplay } from '../components/flex-display/flex-display';
 import { FlexInput } from '../components/flex-input/flex-input';
-import { FlexList } from '../components/flex-list/flex-list';
+import { FlexList, FlexDetail } from '../components/flex-list/flex-list';
 import { PdfViewer } from '../components/pdf-viewer/pdf-viewer';
 import { Record } from '../components/record/record';
 import { Stat } from '../components/stat/stat';
@@ -55,22 +57,25 @@ import { Simu } from '../providers/simu/simu';
     Contact,
     Documents, ViewPage,
     Home,
-    RdvPage,
+    Rdv,
     Concurrents,
     Decouverte,
     DiagConseil,
-    OptionCopier,OptionPieces,
+    OptionCopier,
+    OptionPieces,
     Patrimoine,
     ProfilRisque,
     Signature,
+    Simuler,
+    Souscription,
     Synthese,
     SignApi,
     Start,
-    Synchro, StatSynchroModal,Stat,
+    Synchro, StatSynchroModal, Stat,
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
     PdfViewer,
     Record,
-    FlexDisplay,FlexInput,FlexList
+    FlexDisplay, FlexInput, FlexDetail, FlexList
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -85,7 +90,7 @@ import { Simu } from '../providers/simu/simu';
     Contact,
     Documents, ViewPage,
     Home,
-    RdvPage,
+    Rdv,
     Concurrents,
     Decouverte,
     DiagConseil,
@@ -94,10 +99,13 @@ import { Simu } from '../providers/simu/simu';
     Patrimoine,
     ProfilRisque,
     Signature,
+    Simuler,
+    Souscription,
     Synthese,
     SignApi,
     Start,
-    Synchro, StatSynchroModal
+    Synchro, StatSynchroModal,
+    FlexDetail
   ],
   providers: [Storage, CalcTools, DisplayTools, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
 })

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Events ,LoadingController, ViewController} from 'ionic-angular';
+import { CalcTools } from '../../../providers/comon/calculate';
+import { FlexInput } from '../../../components/flex-input/flex-input';
 
 /*
   Generated class for the ProfilRisque page.
@@ -9,14 +11,65 @@ import { NavController } from 'ionic-angular';
 */
 @Component({
   selector: 'page-profil-risque',
-  templateUrl: 'profil-risque.html'
+  templateUrl: 'profil-risque.html',
+  providers:[CalcTools]
 })
 export class ProfilRisque {
-
-  constructor(public navCtrl: NavController) {}
-
+  @ViewChild(FlexInput) dataProfile: FlexInput
+  lstForms: any = [];
+  dataIn: any = {};
+  idPage: any = {};
+  idClient: any = "";
+  dataOut: any = {};
+  pageStatus: any;
+  constructor(public navCtrl: NavController, public params: NavParams,public viewCtrl: ViewController, public events: Events, public CalcTools: CalcTools, public loadingCtrl: LoadingController) {
+    this.idPage = 2
+    this.idClient = this.params.data['currentCli'];
+    this.dataIn = this.params.data['currentDoc'];
+    this.dataOut = {};
+    this.lstForms = [
+      { "id": 32, "title": "", "pres": "detail", "status": "" }
+    ];
+    // Return events from inputs forms
+    this.events.subscribe('clientChange', eventData => {
+      this.idClient = eventData[0]['currentCli'];
+      this.dataIn = eventData[0]['currentDoc'];
+      for (var key in this.lstForms) { this.lstForms[key]['status'] = ""; }
+      CalcTools.calcPageStatus(this.idPage, this.lstForms);
+    });
+    this.events.subscribe('rdvUpdate', eventData => {
+      this.dataIn = eventData[0];
+    });
+    this.events.subscribe('rdvStatus_' + this.idPage, dataReturn => {
+      //console.log("Update status form", this.lstForms, dataReturn);
+      let idForm = dataReturn[0]['form']['id'];
+      let f = this.lstForms.filter(item => item['id'] === idForm);
+      f[0]['status'] = dataReturn[0]['status'];
+      CalcTools.calcPageStatus(this.idPage, this.lstForms);
+    });
+  }
   ionViewDidLoad() {
     console.log('Hello ProfilRisque Page');
   }
-
+  calcProfil() {
+    let loader = this.loadingCtrl.create({
+      content: "Calcul en cours...",
+      duration: 5000
+    });
+    loader.present();
+    // read forms
+    let lstValue = [];
+    for (let f of this.lstForms) {
+      // Read form f['id']
+      let idF = f['id'];
+      let d = this.dataIn;
+    }
+    this.dataProfile.diagNext('completed');
+    this.events.publish("profilCalculted", 2);
+    loader.dismiss();
+    this.viewCtrl.dismiss();
+  }
+  close() {
+    this.viewCtrl.dismiss();
+  }
 }

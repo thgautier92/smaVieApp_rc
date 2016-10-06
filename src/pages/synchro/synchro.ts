@@ -142,7 +142,6 @@ export class Synchro {
   }
 }
 // ========== Modal for displaying sync results ==========
-//import {Record} from '../../components/record/record';
 @Component({
   templateUrl: "synchro-stats.html"
 })

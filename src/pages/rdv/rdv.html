@@ -6,17 +6,18 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
+    <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Rdv #{{rdvId}} - {{titleRdv}}</ion-title>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle="menuRdv"><ion-icon name="options"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-menu type="overlay" id="menuRdv" [content]="contentRdv" side="right">
   <ion-toolbar color="danger">
     <ion-title>
       <ion-icon name="options"></ion-icon> Options</ion-title>
-    <ion-buttons color="start">
+    <ion-buttons end>
       <button ion-button menuClose="menuRdv">Fermer</button>
     </ion-buttons>
   </ion-toolbar>

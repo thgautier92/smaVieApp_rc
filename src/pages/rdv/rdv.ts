@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Platform, NavParams, Events, AlertController } from 'ionic-angular';
+import { NavParams, Events, AlertController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
+//import { FormBuilder } from '@angular/forms';
 //import { groupBy, ValuesPipe, KeysPipe, textToDate } from '../../pipes/comon';
 import { CouchDbServices } from '../../providers/couch/couch';
-import { Paramsdata } from '../../providers/params-data/params-data';
+//import { Paramsdata } from '../../providers/params-data/params-data';
 import { DisplayTools } from '../../providers/comon/display';
 
 import { Home } from '../home/home';
@@ -15,7 +15,6 @@ import { DiagConseil } from './diag-conseil/diag-conseil';
 //import { OptionCopier } from './option-copier/option-copier';
 import { OptionPieces } from './option-pieces/option-pieces';
 import { Patrimoine } from './patrimoine/patrimoine';
-import { ProfilRisque } from './profil-risque/profil-risque';
 import { Signature } from './signature/signature';
 import { Simuler } from './simuler/simuler';
 import { Souscription } from './souscription/souscription';
@@ -23,17 +22,12 @@ import { Synthese } from './synthese/synthese';
 
 declare var PouchDB: any;
 
-/*
-  Generated class for the Rdv page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-rdv',
   templateUrl: 'rdv.html',
+  providers: [CouchDbServices, DisplayTools]
 })
-export class RdvPage {
+export class Rdv {
   db: any;
   base: any;
   refStatus: any = []
@@ -45,13 +39,15 @@ export class RdvPage {
   rdvId: any;
   dataMenu: any;
   rdvMenu: any;
-  constructor(public platform: Platform,
+  constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public navParams: NavParams,
     public events: Events,
-    public display: DisplayTools, public couch: CouchDbServices) {
+    public display: DisplayTools,
+    public couch: CouchDbServices) {
+
     this.base = navParams.get("base");
     this.rdvId = navParams.get("rdvId");
     console.log("RDV Start", this.rdvId);
@@ -78,19 +74,20 @@ export class RdvPage {
       { "id": 7, "lib": "Souscription", "icon": "contract", "page": Souscription, "nav": "page" },
     ];
     // ===== Events operation on page =====
-    events.subscribe('rdvSave', eventData => {
+
+    this.events.subscribe('rdvSave', eventData => {
       this.saveData(eventData[0]).then(response => {
-        events.publish('rdvUpdate', eventData[0]);
+        this.events.publish('rdvUpdate', eventData[0]);
         this.display.displayToast("Données enregistrées.", 1)
       }, error => { });
     });
-    events.subscribe('menuStatusChange', eventData => {
+    this.events.subscribe('menuStatusChange', eventData => {
       //console.log("Update status menu", eventData);
       let idMenu = eventData[0]['id'];
       let m = this.dataMenu.filter(item => item['id'] === idMenu);
       m[0]['status'] = eventData[0]['status'];
     });
-    events.subscribe('copyClientChange', eventData => {
+    this.events.subscribe('copyClientChange', eventData => {
       console.log("copyClientChange", eventData);
       this.start(+eventData[0]['id'])
     });
@@ -149,7 +146,7 @@ export class RdvPage {
   }
   // Get the tab style, defined in the refStatus variable
   getStyle(status, field) {
-    let r = this.refStatus.filter(item => item['code'] === status);
+    let r = this.refStatus.filter(item => item['code'] == status);
     return (r.length == 0) ? "ligth" : r[0][field];
   }
   // Save data in PouchDb locally
@@ -222,16 +219,17 @@ export class RdvPage {
   }
   // Navigation Menu
   callMenu(item) {
-    let modal = this.modalCtrl.create(item.page, this.currentContext);
-    switch (item['nav']) {
-      case "dialog":
-        modal.present();
-        break;
-      case "page":
-        this.navCtrl.push(item.page, this.currentContext);
-        break;
-      default:
+    if (item.page) {
+      switch (item['nav']) {
+        case "dialog":
+          let modal = this.modalCtrl.create(item.page, this.currentContext);
+          modal.present();
+          break;
+        case "page":
+          this.navCtrl.push(item.page, this.currentContext);
+          break;
+        default:
+      }
     }
   }
-
 }

@@ -36,7 +36,7 @@
               <ion-label stacked>{{field.title}}</ion-label>
               <ion-input clearInput *ngIf="field.type==='number'" type="number" [(formControlName)]="field.model"></ion-input>
               <ion-input clearInput *ngIf="field.type==='text'" type="{{field.type}}" color="primary" [(formControlName)]="field.model" [required]="field.required"></ion-input>
-              <ion-input clearInput *ngIf="field.type==='date'" type="{{field.type}}" color="primary" [(formControlName)]="field.model" [required]="field.required"></ion-input>
+              <ion-datetime clearInput *ngIf="field.type==='date'" displayFormat="DDD DD MMM YYYY" pickerFormat="DD MMM YYYY" color="primary" [(formControlName)]="field.model" [required]="field.required"></ion-datetime>
               <ion-input clearInput *ngIf="field.type==='tel'" type="{{field.type}}" color="primary" [(formControlName)]="field.model" [required]="field.required"></ion-input>
               <ion-input clearInput *ngIf="field.type==='email'" type="{{field.type}}" [(formControlName)]="field.model" color="primary" [required]="field.required"></ion-input>
               <ion-toggle *ngIf="field.type==='boolean'" checked="false" [(formControlName)]="field.model" [required]="field.required"></ion-toggle>

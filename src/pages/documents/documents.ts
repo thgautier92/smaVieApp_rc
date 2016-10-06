@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,NavParams,ViewController } from 'ionic-angular';
-import {Paramsdata} from '../../providers/params-data/params-data';
+import { NavController, ModalController, NavParams, ViewController } from 'ionic-angular';
+import { Paramsdata } from '../../providers/params-data/params-data';
 
 /*
   Generated class for the Documents page.
@@ -13,9 +13,9 @@ import {Paramsdata} from '../../providers/params-data/params-data';
   templateUrl: 'documents.html'
 })
 export class Documents {
-lstDocs: any = [];
+  lstDocs: any = [];
   searchQuery: string = '';
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public paramsApi: Paramsdata) {}
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public paramsApi: Paramsdata) { }
 
   ionViewDidLoad() {
     console.log('Hello Documents Page');
@@ -45,7 +45,7 @@ lstDocs: any = [];
     //console.log(item);
     //let modal = this.modalCtrl.create(ViewPage, { "file": item.file, "title":item.lib });
     //modal.present();
-    if(item.file!=="") this.navCtrl.push(ViewPage, { "file": item.file, "title":item.lib });
+    if (item.file !== "") this.navCtrl.push(ViewPage, { "file": item.file, "title": item.lib });
   };
 
 }
@@ -55,11 +55,11 @@ lstDocs: any = [];
 })
 export class ViewPage {
   file: any;
-  title:any="";
-  constructor(public nav: NavController, public navParams: NavParams,public viewCtrl: ViewController) {
+  title: any = "";
+  constructor(public nav: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     //console.log(this.navParams);
     this.file = this.navParams.data['file'];
-    this.title=this.navParams.data['title'];
+    this.title = this.navParams.data['title'];
     //console.log(this.file);
   }
   close() {

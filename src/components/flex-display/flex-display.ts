@@ -1,4 +1,4 @@
-import { Component, Input,OnInit, OnChanges} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {Platform, Events} from 'ionic-angular';
 import {groupBy} from '../../pipes/comon';
 import {Paramsdata} from '../../providers/params-data/params-data';
@@ -14,7 +14,7 @@ import {Simu} from '../../providers/simu/simu';
   selector: 'flex-display',
   templateUrl: 'flex-display.html',
 })
-export class FlexDisplay implements OnInit, OnChanges {
+export class FlexDisplay {
   menuCurrent: any = {};
   dataCurrent: any;
   okForm: boolean = false;
@@ -24,7 +24,7 @@ export class FlexDisplay implements OnInit, OnChanges {
   dataNonInput: any = {};     // data added outside the generic form
   popupWindow: any = null;    // windows object, open for simulation
   simuExec: boolean = false;  // flag for exec simulation 
-  @Input() idPageIn: any;
+  @Input() idPage: any;
   @Input() idForm: any;
   @Input() dataIn: any;
   @Input() idClient: any;
@@ -33,7 +33,7 @@ export class FlexDisplay implements OnInit, OnChanges {
 
   }
   ngOnInit() {
-    //console.log("==> Data passed to component : ", this.idPageIn, this.idForm, this.dataIn, this.idClient);
+    //console.log("==> Data passed to component : ", this.idPage, this.idForm, this.dataIn, this.idClient);
 
   };
   ngOnChanges(changes: any) {
@@ -105,7 +105,7 @@ export class FlexDisplay implements OnInit, OnChanges {
     } else {
       this.events.publish('rdvSave', this.dataIn);
     }
-    this.events.publish('rdvStatus_' + this.idPageIn, { idPage: this.idPageIn, form: this.selectedForm, status: formStatus });
+    this.events.publish('rdvStatus_' + this.idPage, { idPage: this.idPage, form: this.selectedForm, status: formStatus });
   }
   // ===== External Simulator with params ====
   openSimu(url) {

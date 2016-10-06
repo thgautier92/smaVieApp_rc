@@ -21,7 +21,7 @@ export class FlexList {
   addedForm: boolean = false;
   selectedForm: any = null;
   selectedFields: any;
-  @Input() idPageIn: any;
+  @Input() idPage: any;
   @Input() idForm: any;
   @Input() dataIn: any;
   @Input() idClient: any;
@@ -29,7 +29,7 @@ export class FlexList {
   constructor(public viewCtrl: ViewController, public nav: NavController,public modalCtrl: ModalController, public platform: Platform, public fb: FormBuilder, public paramsApi: Paramsdata, public events: Events) {
   }
   ngOnInit() {
-    //console.log("!! Data passed to component : ", this.idPageIn, this.idForm, this.dataIn, this.idClient);
+    //console.log("!! Data passed to component : ", this.idPage, this.idForm, this.dataIn, this.idClient);
     this.list = [];
   };
   addItem() {
@@ -54,11 +54,12 @@ export class FlexList {
     let dForm = { "form": this.selectedForm['title'], "status": formStatus, "formInput": this.list };
     this.dataIn['rdv']['resultByClient'][this.idClient]['forms'][this.idForm] = dForm;
     this.events.publish('rdvSave', this.dataIn);
-    this.events.publish('rdvStatus_' + this.idPageIn, { idPage: this.idPageIn, form: this.selectedForm, status: formStatus });
+    this.events.publish('rdvStatus_' + this.idPage, { idPage: this.idPage, form: this.selectedForm, status: formStatus });
   }
 }
 
 @Component({
+  selector: 'flex-detail',
   templateUrl: 'flex-detail.html',
 })
 export class FlexDetail {

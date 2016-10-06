@@ -26,8 +26,7 @@
                                 'ion-md-cloud-upload' : field.type=='urlData'}" (click)="initField(idx, field.model)">
                             </ion-icon>
                             <ion-label stacked>{{field.title}}</ion-label>
-                            <ion-input clearInput *ngIf="field.type=='number'" type="number" [(formControlName)]="field.model" min="{{field.enum[0]}}"
-                                max="{{field.enum[1]}}"></ion-input>
+                            <ion-input clearInput *ngIf="field.type=='number'" type="number" [(formControlName)]="field.model"></ion-input>
                             <!-- <ion-range *ngIf="field.type=='number'" min="{{field.enum[0]}}" max="{{field.enum[1]}}" pin="true" [(formControlName)]="field.model" name="input_{{field.model}}">
                                     <ion-label range-left>{{field.enum[0]}}</ion-label>
                                     <ion-label range-right>{{field.enum[1]}}</ion-label>

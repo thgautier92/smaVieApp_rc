@@ -12,7 +12,7 @@
       <button ion-button outline color="primary" (click)="addItem()"><ion-icon name="add-circle"></ion-icon> Ajouter</button>
     </ion-buttons>
     <ion-buttons *ngIf="addedForm" end>
-      <button ion-button color="danger" (click)="diagNext('hold',$event)"><ion-icon name="square"></ion-icon></button>
+      <!-- <button ion-button color="danger" (click)="diagNext('hold',$event)"><ion-icon name="square"></ion-icon></button> -->
       <button ion-button color="favorite" (click)="diagNext('partial',$event)"><ion-icon name="pause"></ion-icon></button>
       <button ion-button color="secondary" (click)="diagNext('completed',$event)"><ion-icon name="play"></ion-icon></button>
     </ion-buttons>
@@ -21,7 +21,7 @@
     <ion-item-sliding *ngFor="let item of list; let idx=index">
       <ion-item>
         <ion-avatar item-left>
-          <img src="img/sales.png">
+          <img src="assets/img/sales.png">
         </ion-avatar>
         <ion-grid>
           <ion-row>
