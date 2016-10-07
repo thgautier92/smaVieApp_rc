@@ -21,8 +21,8 @@ import { OptionPieces } from '../pages/rdv/option-pieces/option-pieces';
 import { Patrimoine } from '../pages/rdv/patrimoine/patrimoine';
 import { ProfilRisque } from '../pages/rdv/profil-risque/profil-risque';
 import { Signature } from '../pages/rdv/signature/signature';
-import { Simuler } from '../pages/rdv/simuler/simuler';
-import { Souscription } from '../pages/rdv/souscription/souscription';
+import { Simuler,SimulerDetail } from '../pages/rdv/simuler/simuler';
+import { Souscription,ClauseDetail } from '../pages/rdv/souscription/souscription';
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
 import { SignApi } from '../pages/sign-api/sign-api';
@@ -66,8 +66,8 @@ import { Simu } from '../providers/simu/simu';
     Patrimoine,
     ProfilRisque,
     Signature,
-    Simuler,
-    Souscription,
+    Simuler,SimulerDetail,
+    Souscription,ClauseDetail,
     Synthese,
     SignApi,
     Start,
@@ -99,8 +99,8 @@ import { Simu } from '../providers/simu/simu';
     Patrimoine,
     ProfilRisque,
     Signature,
-    Simuler,
-    Souscription,
+    Simuler,SimulerDetail,
+    Souscription,ClauseDetail,
     Synthese,
     SignApi,
     Start,

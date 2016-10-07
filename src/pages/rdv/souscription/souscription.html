@@ -5,11 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar secondary>
+  <ion-navbar color="secondary">
     <ion-title>
       <ion-icon name="contract"></ion-icon> Souscription</ion-title>
     <ion-buttons end>
-      <button (click)="close()">Fermer</button>
+      <button ion-button (click)="close()">Fermer</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -22,7 +22,7 @@
   </div>
   -->
   <ion-segment [(ngModel)]="etape" (ionChange)="doChange($event)">
-    <ion-segment-button primary text-wrap *ngFor="let et of lstEtapes" [value]="et.code" [innerHTML]="et.lib">
+    <ion-segment-button color="primary" text-wrap *ngFor="let et of lstEtapes" [value]="et.code" [innerHTML]="et.lib">
     </ion-segment-button>
   </ion-segment>
   <div [ngSwitch]="etape">
@@ -30,17 +30,17 @@
       <ion-card-header>Ajouter une demande d'adhésion</ion-card-header>
       <ion-card-content>
         <ion-list>
-          <ion-list-header secondary>
+          <ion-list-header color="secondary">
             <ion-icon name="search"></ion-icon>
             A partir d'une simulation existante
           </ion-list-header>
-          <ion-item text-wrap *ngFor="let simu of histoSimu;let idx=index">
-            <ion-row>
-              <ion-col width-20><span primary>{{simu.simulateur}}</span></ion-col>
-              <ion-col width-10><span primary>{{simu.idSimu}}</span></ion-col>
-              <ion-col width-40 (click)="selSimu(simu)"><span secondary>{{simu.produit}}</span></ion-col>
-              <ion-col width-30><span danger>{{simu.dateSimu}}</span></ion-col>
-            </ion-row>
+          <ion-item text-wrap *ngFor="let data of histoSimu;let idx=index">
+            <ion-row (click)="selSimu(data)">
+                <ion-col width-20><span color="primary">{{data.simulateur}}</span></ion-col>
+                <ion-col width-10><span color="primary>">{{data.idSimu}}</span></ion-col>
+                <ion-col width-40><span color="secondary">{{data.produit}}</span></ion-col>
+                <ion-col width-30><span color="danger">{{data.dateSimu}}</span></ion-col>
+              </ion-row>
           </ion-item>
           <ion-item>
             <ion-label>
@@ -74,8 +74,8 @@
         <ion-toolbar light position="top">
           <ion-title start>Répartition des supports</ion-title>
           <ion-buttons end>
-            <button outline primary (click)="addSupport()"><ion-icon name="add"></ion-icon> Ajouter</button>
-            <button secondary (click)="updateSupport(supportData)"><ion-icon name="play"></ion-icon></button>
+            <button  ion-button outline color="primary" (click)="addSupport()"><ion-icon name="add"></ion-icon> Ajouter</button>
+            <button  ion-button outline color="secondary" (click)="updateSupport(supportData)"><ion-icon name="play"></ion-icon></button>
           </ion-buttons>
         </ion-toolbar>
       </ion-card-header>
@@ -90,7 +90,7 @@
               <ion-input [(ngModel)]="r.support" type="text" placeholder="Code du support"></ion-input>
               <ion-input [(ngModel)]="r.part" type="number" min=0 max=100 placeholder="Part du support"></ion-input>
             </ion-item>
-            <button ion-button danger item-right icon-left (click)="removeSupport(idx)">
+            <button ion-button color="danger" item-right icon-left (click)="removeSupport(idx)">
               <ion-icon name="trash"></ion-icon> Suppr.
             </button>
           </ion-item>
@@ -102,8 +102,8 @@
         <ion-toolbar light position="top">
           <ion-title start>Options d'arbitrage</ion-title>
           <ion-buttons end>
-            <button outline primary (click)="addArbitrage()"><ion-icon name="add"></ion-icon> Ajouter</button>
-            <button secondary (click)="updateArbitrage()"><ion-icon name="play"></ion-icon></button>
+            <button ion-button outline color="primary" (click)="addArbitrage()"><ion-icon name="add"></ion-icon> Ajouter</button>
+            <button ion-button color="secondary" (click)="updateArbitrage()"><ion-icon name="play"></ion-icon></button>
           </ion-buttons>
         </ion-toolbar>
       </ion-card-header>
@@ -155,8 +155,8 @@
                   <ion-item>
                     <h3>Supports</h3>
                     <ion-buttons end>
-                      <button outline primary (click)="addArbitrageSupport(r.data.support)"><ion-icon name="add"></ion-icon> Ajouter</button>
-                      <button secondary (click)="updateArbitrageSupport(idx)"><ion-icon name="play"></ion-icon></button>
+                      <button ion-button outline color="primary" (click)="addArbitrageSupport(r.data.support)"><ion-icon name="add"></ion-icon> Ajouter</button>
+                      <button ion-button color="secondary" (click)="updateArbitrageSupport(idx)"><ion-icon name="play"></ion-icon></button>
                     </ion-buttons>
                     <ion-list>
                       <ion-item *ngFor="let item of supportArbitrageData;let idx=index">
@@ -168,9 +168,9 @@
                           <ion-input [(ngModel)]="item.support" type="text" placeholder="Code du support"></ion-input>
                           <ion-input [(ngModel)]="item.part" type="number" min=0 max=100 placeholder="Part du support"></ion-input>
                         </ion-item>
-                        <button ion-button danger item-right icon-left (click)="removeArbitrageSupport(idx)">
-              <ion-icon name="trash"></ion-icon>
-            </button>
+                        <button ion-button color="danger" item-right icon-left (click)="removeArbitrageSupport(idx)">
+                          <ion-icon name="trash"></ion-icon>
+                        </button>
                       </ion-item>
                     </ion-list>
                   </ion-item>
@@ -179,7 +179,7 @@
             </ion-col>
             <ion-col width-10 text-right>
               <button ion-button clear item-right icon-left (click)="removeArbitrage(idx)">
-                    <ion-icon danger name="trash"></ion-icon>
+                    <ion-icon color="danger" name="trash"></ion-icon>
                   </button>
             </ion-col>
           </ion-row>
@@ -193,7 +193,7 @@
       </ion-card-content>
     </ion-card>
     <ion-card *ngSwitchCase="'rel'">
-      <ion-card-header><button (click)="initREL()">Initialisation des relations</button></ion-card-header>
+      <ion-card-header><button ion-button (click)="initREL()">Initialisation des relations</button></ion-card-header>
       <ion-card-content>
         <div *ngIf="relData!=[]">
           <ion-card *ngFor="let client of relData;let idxCli=index">
@@ -214,7 +214,7 @@
                   </div>
                 </ion-col>
                 <ion-col width-10 text-right>
-                  <button ion-button danger item-right icon-left (click)="removeRole(idxCli,idxRol)"><ion-icon name="trash"></ion-icon></button>
+                  <button ion-button color="danger" item-right icon-left (click)="removeRole(idxCli,idxRol)"><ion-icon name="trash"></ion-icon></button>
                 </ion-col>
               </ion-row>
             </ion-card-content>
@@ -228,8 +228,8 @@
         <ion-list>
           <ion-item *ngFor="let cl of refClauses;let idx=index">
             {{cl.lib}}
-            <!-- <ion-label>{{cl.lib}}</ion-label><ion-checkbox primary (checked)="false"></ion-checkbox> -->
-            <button *ngIf="cl.form!=''" ion-button outline item-right icon-left (click)="openClause(cl)">Compléments...</button>
+            <!-- <ion-label>{{cl.lib}}</ion-label><ion-checkbox color="primary" (checked)="false"></ion-checkbox> -->
+            <button ion-button *ngIf="cl.form!=''" ion-button outline item-right icon-left (click)="openClause(cl)">Compléments...</button>
           </ion-item>
         </ion-list>
       </ion-card-content>

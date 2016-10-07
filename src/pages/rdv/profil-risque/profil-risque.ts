@@ -57,13 +57,14 @@ export class ProfilRisque {
       duration: 5000
     });
     loader.present();
-    // read forms
+    /* ==== Read Forms for calculate score
     let lstValue = [];
     for (let f of this.lstForms) {
       // Read form f['id']
       let idF = f['id'];
       let d = this.dataIn;
     }
+    */
     this.dataProfile.diagNext('completed');
     this.events.publish("profilCalculted", 2);
     loader.dismiss();

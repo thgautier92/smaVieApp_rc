@@ -18,7 +18,10 @@ npm-debug.log*
 .versions/
 coverage/
 dist/
-node_modules/
+# Update for external framwork - node_modules/
+node_modules/*
+!node_modules/@ionic/app-scripts/config/*
+
 tmp/
 temp/
 hooks/
