@@ -74,7 +74,7 @@
         <ion-toolbar light position="top">
           <ion-title start>Répartition des supports</ion-title>
           <ion-buttons end>
-            <button  ion-button outline color="primary" (click)="addSupport()"><ion-icon name="add"></ion-icon> Ajouter</button>
+            <button  ion-button outline color="primary" (click)="addSupport()"><ion-icon name="add"></ion-icon>&nbsp;Ajouter</button>
             <button  ion-button outline color="secondary" (click)="updateSupport(supportData)"><ion-icon name="play"></ion-icon></button>
           </ion-buttons>
         </ion-toolbar>
@@ -102,7 +102,7 @@
         <ion-toolbar light position="top">
           <ion-title start>Options d'arbitrage</ion-title>
           <ion-buttons end>
-            <button ion-button outline color="primary" (click)="addArbitrage()"><ion-icon name="add"></ion-icon> Ajouter</button>
+            <button ion-button outline color="primary" (click)="addArbitrage()"><ion-icon name="add"></ion-icon>&nbsp;Ajouter</button>
             <button ion-button color="secondary" (click)="updateArbitrage()"><ion-icon name="play"></ion-icon></button>
           </ion-buttons>
         </ion-toolbar>
@@ -155,7 +155,7 @@
                   <ion-item>
                     <h3>Supports</h3>
                     <ion-buttons end>
-                      <button ion-button outline color="primary" (click)="addArbitrageSupport(r.data.support)"><ion-icon name="add"></ion-icon> Ajouter</button>
+                      <button ion-button outline color="primary" (click)="addArbitrageSupport(r.data.support)"><ion-icon name="add"></ion-icon>&nbsp;Ajouter</button>
                       <button ion-button color="secondary" (click)="updateArbitrageSupport(idx)"><ion-icon name="play"></ion-icon></button>
                     </ion-buttons>
                     <ion-list>
@@ -239,9 +239,9 @@
       <ion-card-content>
         <ion-list>
           <ion-item *ngFor="let item of dataIn['rdv']['docsInput'];let idx=index">
-            <ion-avatar item-left>
+            <ion-thumbnail item-left>
               <img [attr.src]="item.img64">
-            </ion-avatar>
+            </ion-thumbnail>
             <h2>{{item.idDoc}}. {{item.nature}} - {{item.reference}}</h2>
           </ion-item>
         </ion-list>

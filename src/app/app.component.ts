@@ -23,12 +23,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = Home;
   pages: Array<{ title: string, component: any, icon: any, color: any }>;
-  isAut: boolean = false;
-  userData: any
+  isAuth: boolean = false;
+  userData: any;
   constructor(public platform: Platform, public events: Events, public modalCtrl: ModalController, public couch: CouchDbServices) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Rendez-vous', component: Start, icon: "people", color: "primary" },
       { title: 'Synchronisation', component: Synchro, icon: "sync", color: "danger" },
@@ -37,18 +35,19 @@ export class MyApp {
     ];
     this.events.subscribe('userChange', eventData => {
       this.userData = eventData[0];
-      this.isAut = eventData[0]['ok'];
+      this.isAuth = eventData[0]['ok'];
     });
 
   }
   ngOnInit() {
     this.couch.verifSession(true).then(response => {
+      //console.log(response);
       this.userData = response;
-      this.isAut = true;
+      this.isAuth = true;
       this.nav.setRoot(Home, this.userData);
     }, error => {
       console.log("Verif return", error);
-      this.isAut = false;
+      this.isAuth = false;
       this.userData = {};
       this.nav.setRoot(Auth);
     });
@@ -75,7 +74,7 @@ export class MyApp {
   disConnect() {
     this.couch.closeSession();
     this.userData = {};
-    this.isAut = false;
+    this.isAuth = false;
     this.nav.setRoot(Auth);
   };
   openPage(page) {
@@ -86,5 +85,4 @@ export class MyApp {
   goHome() {
     this.nav.setRoot(Home);
   }
-
 }

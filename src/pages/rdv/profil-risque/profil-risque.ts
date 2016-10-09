@@ -66,9 +66,10 @@ export class ProfilRisque {
     }
     */
     this.dataProfile.diagNext('completed');
-    this.events.publish("profilCalculted", 2);
+    let max=3;let min=1;
+    this.events.publish("profilCalculted", (Math.floor((max-min)*Math.random())+min));
     loader.dismiss();
-    this.viewCtrl.dismiss();
+    this.close();
   }
   close() {
     this.viewCtrl.dismiss();

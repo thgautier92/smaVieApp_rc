@@ -1,7 +1,8 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="light">
-      <ion-title><ion-icon name="cog"></ion-icon> Comptes et Outils</ion-title>
+      <ion-title>
+        <ion-icon name="cog"></ion-icon> Comptes et Outils</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -12,9 +13,12 @@
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
-      <ion-item-divider divider><ion-icon name="contacts" color="danger"></ion-icon></ion-item-divider>
-      <button menuClose ion-item *ngIf="!isAut" (click)="connect()"><ion-icon item-left name="log-in"></ion-icon>Connexion</button>
-      <button menuClose ion-item  *ngIf="isAut" (click)="disConnect()"><ion-icon item-left name="log-out"></ion-icon>Déconnexion</button>
+      <ion-item-divider>
+        <ion-icon name="contacts" color="danger"></ion-icon>
+        <span *ngIf="isAuth">Votre compte : {{userData.name}}</span>
+      </ion-item-divider>
+      <button menuClose ion-item *ngIf="!isAuth" (click)="connect()"><ion-icon item-left name="log-in"></ion-icon>Connexion</button>
+      <button menuClose ion-item *ngIf="isAuth" (click)="disConnect()"><ion-icon item-left name="log-out"></ion-icon>Déconnexion</button>
     </ion-list>
   </ion-content>
 
