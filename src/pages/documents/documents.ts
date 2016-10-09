@@ -10,7 +10,8 @@ import { Paramsdata } from '../../providers/params-data/params-data';
 */
 @Component({
   selector: 'page-documents',
-  templateUrl: 'documents.html'
+  templateUrl: 'documents.html',
+  providers:[Paramsdata]
 })
 export class Documents {
   lstDocs: any = [];
@@ -38,7 +39,7 @@ export class Documents {
       })
     }
   }
-  onCancel() {
+  onCancel(evt) {
     this.initializeItems();
   }
   openFile(item) {
@@ -65,5 +66,4 @@ export class ViewPage {
   close() {
     this.viewCtrl.dismiss();
   }
-
 }

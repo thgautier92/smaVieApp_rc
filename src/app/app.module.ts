@@ -105,7 +105,8 @@ import { Simu } from '../providers/simu/simu';
     SignApi,
     Start,
     Synchro, StatSynchroModal,
-    FlexDetail
+    FlexDetail,
+    PdfViewer
   ],
   providers: [Storage, CalcTools, DisplayTools, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
 })

@@ -86,7 +86,8 @@ export class FlexDetail {
       console.error(error);
     });
   }
-  saveData() {
+  onSubmit(){}
+  saveData(evt) {
     //console.log(this.formDetail);
     this.viewCtrl.dismiss({ "form": this.selectedForm, "value": this.formDetail['_value'] });
   }

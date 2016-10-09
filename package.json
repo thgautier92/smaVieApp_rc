@@ -1,11 +1,11 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "smavieapp-proto",
+  "author": "SMA-DSI",
+  "homepage": "http://groupe-sma.fr/",
   "private": true,
   "scripts": {
-    "build": "ionic-app-scripts build",
-    "watch": "ionic-app-scripts watch",
+    "build": "ionic-app-scripts build --copy ./config/copy.js",
+    "watch": "ionic-app-scripts watch --copy ./config/copy.js",
     "serve:before": "watch",
     "emulate:before": "build",
     "deploy:before": "build",
