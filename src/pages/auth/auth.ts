@@ -18,7 +18,7 @@ import { Home } from '../home/home';
 export class Auth {
   authType: string = "login";
   user: string;
-  isAut: boolean = false;
+  isAuth: boolean = false;
   loginCreds: any;
   signupCreds: any;
   constructor(public navCtrl: NavController, public local: Storage, private fb: FormBuilder, public events: Events, public toastCtrl: ToastController, public couch: CouchDbServices) { }
@@ -43,12 +43,12 @@ export class Auth {
       if (response['ok']) {
         console.log("User Auth validated");
         this.couch.verifSession(true).then(response => {
-          this.isAut = true;
+          this.isAuth = true;
           this.events.publish('userChange', response);
           this.navCtrl.setRoot(Home, response);
         }, error => {
           console.log(error);
-          this.isAut = false;
+          this.isAuth = false;
           let toast = this.toastCtrl.create({
             message: 'Connexion impossible. Erreur technique.',
             duration: 3000
@@ -77,7 +77,7 @@ export class Auth {
   }
   restart() {
     this.couch.closeSession();
-    this.isAut = false;
+    this.isAuth = false;
     this.authType = "login";
   }
 
