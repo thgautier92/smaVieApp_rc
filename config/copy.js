@@ -25,6 +25,10 @@ module.exports = {
       dest: 'www/build/json-formatter.js'
     },
     {
+      src: 'node_modules/json-formatter-js/dist/json-formatter.js.map',
+      dest: 'www/build/json-formatter.js.map'
+    },
+    {
       src: 'node_modules/pdfjs-dist/build/pdf.js',
       dest: 'www/build/pdf.js'
     },
