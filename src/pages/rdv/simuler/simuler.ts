@@ -128,7 +128,7 @@ export class Simuler {
   startSimu(id, simulator) {
     return new Promise((resolve, reject) => {
       // Send data to simulator and get the context url
-      let loading = this.display.displayLoading("Envoie des données au simulateur", 5000);
+      let loading = this.display.displayLoading("Envoie des données au simulateur", 5);
       let rdvId = this.dataIn['rdv']['rdvId'];
       this.simu.callSimulator(simulator, { "rdvId": rdvId, "dataIn": this.dataIn }).then(dataReturn => {
         console.log("Data returned after sendind data", dataReturn);
@@ -167,7 +167,7 @@ export class Simuler {
   }
 
   getSimu(simulator) {
-    let loading = this.display.displayLoading("Reception des données du simulateur", 5000);
+    let loading = this.display.displayLoading("Reception des données du simulateur", 5);
     this.simu.getSimulatorById(simulator, this.idSimuExternal).then(response => {
       //console.log("Data simu", response);
       loading.dismiss();

@@ -16,7 +16,7 @@ export class DisplayTools {
         this.nav = nav;
     }
     displayLoading(msg, second?) {
-        let opt = { content: msg };
+        let opt = { content: msg, dismissOnPageChange : false };
         if (second) {
             opt['duration'] = second * 1000;
             opt['dismissOnPageChange'] = true;

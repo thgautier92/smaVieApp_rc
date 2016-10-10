@@ -54,12 +54,12 @@ export class Synchro {
   }
   loadBase(params) {
     //console.log(params);
-    let loading = this.display.displayLoading("Activation de la base " + params.base,5);
+    //let loading = this.display.displayLoading("Activation de la base " + params.base,10);
     this.sync = { "start": false, "info": false, "error": false, "stats": false, "timer": false };
     this.db = new PouchDB(params.base);
     this.remoteCouch = 'http://' + this.params.user + ':' + this.params.password + '@' + this.params.srv + '/' + this.params.base;
     this.docs = [];
-    loading.dismiss();
+    //loading.dismiss();
   };
   showBase() {
     let me = this;

@@ -50,11 +50,11 @@ export class Start {
     });
   }
   loadBase(base) {
-    let loading = this.display.displayLoading("Activation de la base " + base, 5);
+    //let loading = this.display.displayLoading("Activation de la base " + base, 5);
     this.db = new PouchDB(base);
     this.docs = []
     this.showBase();
-    loading.dismiss();
+    //loading.dismiss();
   }
   showBase(status?) {
     let me = this;

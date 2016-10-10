@@ -69,7 +69,7 @@ export class Signature {
     console.log('Hello Signature Page');
   }
   getTemplates() {
-    let load = this.display.displayLoading("Chargement des modèles");
+    let load = this.display.displayLoading("Chargement des modèles",5);
     this.sign.callApi(this.srv, "listTemplate").then(response => {
       console.log(response);
       this.lstDocSign = response['envelopeTemplates'];
