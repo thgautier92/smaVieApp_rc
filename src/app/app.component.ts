@@ -40,7 +40,14 @@ export class MyApp {
 
   }
   ngOnInit() {
-    this.couch.verifSession(true).then(response => {
+    
+  };
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      StatusBar.styleDefault();
+      this.couch.verifSession(true).then(response => {
       //console.log(response);
       this.userData = response;
       this.isAuth = true;
@@ -51,12 +58,6 @@ export class MyApp {
       this.userData = {};
       this.nav.setRoot(Auth);
     });
-  };
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
     });
   }
   connect() {
