@@ -20,5 +20,8 @@
   .abandon{
     color: map-get($colors, danger);
   }
+  .non_demarre{
+    color: map-get($colors, primary);
+  }
 }
 

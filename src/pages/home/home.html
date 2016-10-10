@@ -21,13 +21,29 @@
   <ion-grid>
     <ion-row wrap>
       <ion-col *ngFor="let item of items" (click)="openNavDetailsPage(item)">
-        <ion-item no-padding text-center text-wrap no-lines>
-          <ion-thumbnail item-left>
-            <ion-img src="assets/img/{{item.icon}}"></ion-img>
-          </ion-thumbnail>
-          <h1>{{item.title}}</h1>
-          <p>{{item.description}}</p>
-        </ion-item>
+        <ion-card>
+          <img src="assets/img/{{item.icon}}" />
+          <ion-card-content>
+            <ion-card-title>
+              {{item.title}}
+            </ion-card-title>
+            <p>
+              {{item.description}}
+            </p>
+          </ion-card-content>
+          <ion-row *ngIf="infoBase">
+            <ion-col>
+              <button ion-button primary clear small><ion-icon name="thumbs-up"></ion-icon>
+                <div>{{infoBase.doc_count}}</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button primary clear small><ion-icon name="text"></ion-icon>
+              <div> infos</div>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

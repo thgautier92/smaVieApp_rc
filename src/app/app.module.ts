@@ -37,6 +37,7 @@ import { FlexList, FlexDetail } from '../components/flex-list/flex-list';
 import { PdfViewer } from '../components/pdf-viewer/pdf-viewer';
 import { Record } from '../components/record/record';
 import { Stat } from '../components/stat/stat';
+import { ImageView } from '../components/image-view/image-view';
 // providers
 import { CalcTools } from '../providers/comon/calculate';
 import { DisplayTools } from '../providers/comon/display';
@@ -75,7 +76,7 @@ import { Simu } from '../providers/simu/simu';
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
     PdfViewer,
     Record,
-    FlexDisplay, FlexInput, FlexDetail, FlexList
+    FlexDisplay, FlexInput, FlexDetail, FlexList,ImageView
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -106,7 +107,8 @@ import { Simu } from '../providers/simu/simu';
     Start,
     Synchro, StatSynchroModal,
     FlexDetail,
-    PdfViewer
+    PdfViewer,
+    ImageView
   ],
   providers: [Storage, CalcTools, DisplayTools, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
 })

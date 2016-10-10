@@ -43,8 +43,7 @@
 <ion-content #contentRdv class="rdv">
   <ion-tabs #rdvTabs *ngIf="currentContext" tabsPlacement="top" tabsLayout="icon-left">
     <ion-tab *ngFor="let item of dataMenu, let i = index" secondary [tabIcon]="item.icon" [tabTitle]="item.lib" [root]="item.page"
-      [rootParams]="retrieveData(i)" [tabBadge]="getStyle(item.status,'lib')" [tabBadgeStyle]="getStyle(item.status,'color')"
-      preloadTabs="false">
+      [rootParams]="retrieveData(i)" [tabBadge]="getStyle(item.status,'lib')" [tabBadgeStyle]="getStyle(item.status,'color')">
     </ion-tab>
   </ion-tabs>
 </ion-content>

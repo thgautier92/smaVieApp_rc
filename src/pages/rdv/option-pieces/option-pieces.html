@@ -29,11 +29,11 @@
               <img [attr.src]="item.img64">
             </ion-thumbnail>
             <h2>{{item.idDoc}}. {{item.nature}} - {{item.reference}}</h2>
-            <button ion-button clear item-right>Voir</button>
+            <button ion-button clear item-right (click)="viewImage(item)">Voir</button>
           </ion-item>
           <ion-item-options side="right">
-            <button color="danger" (click)="delItem(idx)"><ion-icon name="trash"></ion-icon>Suppr.</button>
-            <button primary><ion-icon name="mail"></ion-icon>Email</button>
+            <button ion-button color="danger" (click)="delItem(idx)"><ion-icon name="trash"></ion-icon>Suppr.</button>
+            <button ion-button primary><ion-icon name="mail"></ion-icon>Email</button>
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>

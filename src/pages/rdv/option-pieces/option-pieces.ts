@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ViewController, NavParams, ModalController, AlertController, Events } from 'ionic-angular';
+import { ImageView } from '../../../components/image-view/image-view';
 import { DisplayTools } from '../../../providers/comon/display';
 import { CalcTools } from '../../../providers/comon/calculate';
 import { Paramsdata } from '../../../providers/params-data/params-data';
@@ -91,6 +92,11 @@ export class OptionPieces {
       alert.present();
     }
   }
+  viewImage(item){
+    
+    let modal=this.modalCtrl.create(ImageView,item)
+    modal.present();
+  }
   takeMail() { }
   execute() {
     //store Image Data+Ref in docs
@@ -114,6 +120,7 @@ export class OptionPieces {
     }
     this.events.publish('rdvSave', this.dataIn);
   }
+
 
 }
 function setOptions(srcType) {

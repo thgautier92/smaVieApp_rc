@@ -21,7 +21,7 @@ import { Synchro } from '../pages/synchro/synchro';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = Home;
+  rootPage: any = Auth;
   pages: Array<{ title: string, component: any, icon: any, color: any }>;
   isAuth: boolean = false;
   userData: any;
@@ -84,6 +84,6 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
   goHome() {
-    this.nav.setRoot(Home);
+    this.nav.setRoot(Home,this.userData);
   }
 }

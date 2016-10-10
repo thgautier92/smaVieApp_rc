@@ -5,11 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="simple">
+  <ion-navbar>
     <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Les rendez-vous préparés</ion-title>
     <ion-buttons end>
-      <button class="action" ion-button (click)="showBase('')"><ion-icon name="flag"></ion-icon></button>
+      <button class="action" ion-button color="dark" (click)="showBase('')"><ion-icon name="flag"></ion-icon></button>
       <button class="action" ion-button color="danger" (click)="showBase('Abandonné')"><ion-icon name="flag"></ion-icon></button>
       <button class="action" ion-button color="favorite" (click)="showBase('En cours')"><ion-icon name="flag"></ion-icon></button>
       <button class="action" ion-button color="secondary" (click)="showBase('Terminé')"><ion-icon name="flag"></ion-icon></button>
