@@ -92,10 +92,10 @@ export class OptionPieces {
       alert.present();
     }
   }
-  viewImage(item){
-    
-    let modal=this.modalCtrl.create(ImageView,item)
-    modal.present();
+  viewImage(item) {
+    this.navCtrl.push(ImageView,item);
+    //let modal = this.modalCtrl.create(ImageView, item)
+    //modal.present();
   }
   takeMail() { }
   execute() {

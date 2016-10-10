@@ -149,6 +149,9 @@ export class Rdv {
     let r = this.refStatus.filter(item => item['code'] == status);
     return (r.length == 0) ? "ligth" : r[0][field];
   }
+  tabsChange(evt){
+    console.log("Tab Change",evt);
+  }
   // Save data in PouchDb locally
   saveData(docPut) {
     return new Promise((resolve, reject) => {
