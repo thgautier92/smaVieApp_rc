@@ -84,7 +84,8 @@ export class SignServices {
         if (this.platform.is('cordova')) {
           resolve(param[0]['params']['rootApi']);
         } else {
-          if (this.platform.is('core')) {
+          console.log("LOCATION ",location);
+          if (location.hostname=="localhost") {
             resolve(param[0]['params']['corsApi']);
           } else {
             resolve(param[0]['params']['rootApi']);
