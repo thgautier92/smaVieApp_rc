@@ -21,8 +21,8 @@ import { OptionPieces } from '../pages/rdv/option-pieces/option-pieces';
 import { Patrimoine } from '../pages/rdv/patrimoine/patrimoine';
 import { ProfilRisque } from '../pages/rdv/profil-risque/profil-risque';
 import { Signature } from '../pages/rdv/signature/signature';
-import { Simuler,SimulerDetail } from '../pages/rdv/simuler/simuler';
-import { Souscription,ClauseDetail } from '../pages/rdv/souscription/souscription';
+import { Simuler, SimulerDetail } from '../pages/rdv/simuler/simuler';
+import { Souscription, ClauseDetail } from '../pages/rdv/souscription/souscription';
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
 import { SignApi } from '../pages/sign-api/sign-api';
@@ -41,6 +41,7 @@ import { ImageView } from '../components/image-view/image-view';
 // providers
 import { CalcTools } from '../providers/comon/calculate';
 import { DisplayTools } from '../providers/comon/display';
+import { InfoDevice } from '../providers/comon/info-device';
 import { CouchDbServices } from '../providers/couch/couch';
 import { JsonDemo } from '../providers/json-demo/json-demo';
 import { Paramsdata } from '../providers/params-data/params-data';
@@ -67,8 +68,8 @@ import { Simu } from '../providers/simu/simu';
     Patrimoine,
     ProfilRisque,
     Signature,
-    Simuler,SimulerDetail,
-    Souscription,ClauseDetail,
+    Simuler, SimulerDetail,
+    Souscription, ClauseDetail,
     Synthese,
     SignApi,
     Start,
@@ -76,7 +77,7 @@ import { Simu } from '../providers/simu/simu';
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
     PdfViewer,
     Record,
-    FlexDisplay, FlexInput, FlexDetail, FlexList,ImageView
+    FlexDisplay, FlexInput, FlexDetail, FlexList, ImageView
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -100,8 +101,8 @@ import { Simu } from '../providers/simu/simu';
     Patrimoine,
     ProfilRisque,
     Signature,
-    Simuler,SimulerDetail,
-    Souscription,ClauseDetail,
+    Simuler, SimulerDetail,
+    Souscription, ClauseDetail,
     Synthese,
     SignApi,
     Start,
@@ -110,6 +111,6 @@ import { Simu } from '../providers/simu/simu';
     PdfViewer,
     ImageView
   ],
-  providers: [Storage, CalcTools, DisplayTools, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
+  providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
 })
 export class AppModule { }

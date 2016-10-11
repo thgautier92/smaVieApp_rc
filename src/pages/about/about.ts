@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { InfoDevice } from '../../providers/comon/info-device';
 
 /*
   Generated class for the About page.
@@ -9,14 +10,25 @@ import { NavController } from 'ionic-angular';
 */
 @Component({
   selector: 'page-about',
-  templateUrl: 'about.html'
+  templateUrl: 'about.html',
+  providers: [InfoDevice]
 })
 export class About {
+  infos: any;
+  constructor(public navCtrl: NavController, public infosDevice: InfoDevice) {
 
-  constructor(public navCtrl: NavController) {}
-
+  }
   ionViewDidLoad() {
     console.log('Hello About Page');
   }
-
+  ngOnInit(){
+    this.getInfoDevice();
+  }
+  getInfoDevice() {
+    this.infos = {};
+    this.infosDevice.getDeviceInfos().then(response => {
+      this.infos = response;
+      //console.log(response);
+    })
+  }
 }

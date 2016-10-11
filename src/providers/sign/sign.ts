@@ -84,7 +84,11 @@ export class SignServices {
         if (this.platform.is('cordova')) {
           resolve(param[0]['params']['rootApi']);
         } else {
-          resolve(param[0]['params']['corsApi']);
+          if (this.platform.is('core')) {
+            resolve(param[0]['params']['corsApi']);
+          } else {
+            resolve(param[0]['params']['rootApi']);
+          }
         }
       } else {
         reject("Fournisseur inconnu");

@@ -69,13 +69,13 @@ export class Signature {
     console.log('Hello Signature Page');
   }
   getTemplates() {
-    let load = this.display.displayLoading("Chargement des modèles",5);
+    //let load = this.display.displayLoading("Chargement des modèles",5);
     this.sign.callApi(this.srv, "listTemplate").then(response => {
       console.log(response);
       this.lstDocSign = response['envelopeTemplates'];
-      load.dismiss();
+      //load.dismiss();
     }, error => {
-      load.dismiss();
+      //load.dismiss();
       this.display.displayToast("Service de signature NON DISPONIBLE");
       console.log(error);
 

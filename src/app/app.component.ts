@@ -5,7 +5,7 @@ import { CouchDbServices } from '../providers/couch/couch';
 //import { Page1 } from '../pages/page1/page1';
 //import { Page2 } from '../pages/page2/page2';
 
-//import { About } from '../pages/about/about';
+import { About } from '../pages/about/about';
 import { Auth } from '../pages/auth/auth';
 //import { Contact } from '../pages/contact/contact';
 import { Documents } from '../pages/documents/documents';
@@ -31,7 +31,8 @@ export class MyApp {
       { title: 'Rendez-vous', component: Start, icon: "people", color: "primary" },
       { title: 'Synchronisation', component: Synchro, icon: "sync", color: "danger" },
       { title: 'Espace Documentaire', component: Documents, icon: "albums", color: "action" },
-      { title: 'Outil de signature', component: SignApi, icon: "bug", color: "secondary" }
+      { title: 'Outil de signature', component: SignApi, icon: "bug", color: "secondary" },
+      { title: 'A propos', component: About, icon: "information-circle", color: "standard" }
     ];
     this.events.subscribe('userChange', eventData => {
       this.userData = eventData[0];

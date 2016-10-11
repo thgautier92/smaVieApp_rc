@@ -5,17 +5,33 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>about</ion-title>
-    <button ion-button menuToggle>
+	<ion-navbar color="standard">
+		<ion-title>A propos</ion-title>
+		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-  </ion-navbar>
-
+    <ion-buttons end>
+      <button class="action" ion-button color="favorite" (click)="getInfoDevice()"><ion-icon name="information-circle"></ion-icon></button>
+    </ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
+	<ion-card>
+		<ion-card-header primary>Système d'exploitation</ion-card-header>
+		<ion-list>
+			<ion-item *ngFor="let item of infos.os">
+				<ion-label>{{item.type}} {{item.version}}</ion-label>
+				<ion-checkbox secondary [checked]="item.value"></ion-checkbox>
+			</ion-item>
+		</ion-list>
+		<ion-card-header secondary>Matériel - {{infos.width}}x{{infos.height}}</ion-card-header>
+		<ion-list>
+			<ion-item *ngFor="let item of infos.device">
+				<ion-label>{{item.type}} {{item.version}}</ion-label>
+				<ion-checkbox secondary [checked]="item.value"></ion-checkbox>
+			</ion-item>
+		</ion-list>
+	</ion-card>
 </ion-content>

@@ -9,7 +9,7 @@
   <ion-content>
     <ion-list>
       <button menuClose ion-item (click)="goHome()"><ion-icon color="danger" item-left name="home"></ion-icon>Accueil</button>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [color]="p.color">
+      <button menuClose no-lines ion-item *ngFor="let p of pages" (click)="openPage(p)" [color]="p.color">
         <ion-icon item-left [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
