@@ -52,12 +52,11 @@ export class ProfilRisque {
     console.log('Hello ProfilRisque Page');
   }
   calcProfil() {
+    /* ==== Read Forms for calculate score
     let loader = this.loadingCtrl.create({
-      content: "Calcul en cours...",
-      duration: 5000
+      content: "Calcul en cours..."
     });
     loader.present();
-    /* ==== Read Forms for calculate score
     let lstValue = [];
     for (let f of this.lstForms) {
       // Read form f['id']
@@ -68,7 +67,7 @@ export class ProfilRisque {
     this.dataProfile.diagNext('completed');
     let max=3;let min=1;
     this.events.publish("profilCalculted", (Math.floor((max-min)*Math.random())+min));
-    loader.dismiss();
+    //loader.dismiss();
     this.close();
   }
   close() {
