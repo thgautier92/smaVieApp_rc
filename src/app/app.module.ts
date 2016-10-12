@@ -47,6 +47,7 @@ import { JsonDemo } from '../providers/json-demo/json-demo';
 import { Paramsdata } from '../providers/params-data/params-data';
 import { Pouch } from '../providers/pouch/pouch';
 import { SignServices } from '../providers/sign/sign';
+import { DocuSignServices } from '../providers/sign/docuSign';
 import { Simu } from '../providers/simu/simu';
 
 @NgModule({
@@ -111,6 +112,7 @@ import { Simu } from '../providers/simu/simu';
     PdfViewer,
     ImageView
   ],
-  providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch, SignServices, Simu]
+  providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch, 
+  SignServices,DocuSignServices, Simu]
 })
 export class AppModule { }

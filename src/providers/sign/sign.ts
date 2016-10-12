@@ -84,8 +84,8 @@ export class SignServices {
         if (this.platform.is('cordova')) {
           resolve(param[0]['params']['rootApi']);
         } else {
-          console.log("LOCATION ",location);
-          if (location.hostname=="localhost") {
+          console.log("LOCATION ", location);
+          if (location.hostname == "localhost") {
             resolve(param[0]['params']['corsApi']);
           } else {
             resolve(param[0]['params']['rootApi']);
@@ -187,5 +187,30 @@ export class SignServices {
       });
     });
   }
-}
+  // ===== Specific API for each solution =====
+  // ==== DOCUSIGN
+  getStatusLib(x) {
+    return function (x) {
+      var statusCode =
+        {
+          "created": "crée",
+          "deleted": "supprimée",
+          "sent": "envoyée",
+          "delivered": "livrée",
+          "signed": "signée",
+          "completed": "terminée",
+          "declined": "refusée",
+          "voided": "annulée",
+          "timedout": "hors délai",
+          "authoritativecopy": "copie autorisée",
+          "transfercompleted": "transfert terminé",
+          "template": "modèle",
+          "correct": "correcte"
+        };
+      var text = statusCode[x];
+      return text ? text : x;
+    }
+  }
+  // ===== DOCAPOST
 
+}
