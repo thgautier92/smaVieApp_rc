@@ -11,7 +11,7 @@ import { Auth } from '../pages/auth/auth';
 import { Documents } from '../pages/documents/documents';
 import { Home } from '../pages/home/home';
 //import { Rdv } from '../pages/rdv/rdv';
-import { SignApi } from '../pages/sign-api/sign-api';
+import { SignEval } from '../pages/sign-eval/sign-eval';
 import { Start } from '../pages/start/start';
 import { Synchro } from '../pages/synchro/synchro';
 
@@ -31,7 +31,7 @@ export class MyApp {
       { title: 'Rendez-vous', component: Start, icon: "people", color: "primary" },
       { title: 'Synchronisation', component: Synchro, icon: "sync", color: "danger" },
       { title: 'Espace Documentaire', component: Documents, icon: "albums", color: "action" },
-      { title: 'Outil de signature', component: SignApi, icon: "bug", color: "secondary" },
+      { title: 'Outil de signature', component: SignEval, icon: "bug", color: "secondary" },
       { title: 'A propos', component: About, icon: "information-circle", color: "standard" }
     ];
     this.events.subscribe('userChange', eventData => {

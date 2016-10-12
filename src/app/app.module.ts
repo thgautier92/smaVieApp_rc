@@ -26,6 +26,10 @@ import { Souscription, ClauseDetail } from '../pages/rdv/souscription/souscripti
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
 import { SignApi } from '../pages/sign-api/sign-api';
+import { SignEval } from '../pages/sign-eval/sign-eval';
+import { Identity } from '../pages/sign-eval/identity/identity';
+import { DocuSignPage } from '../pages/sign-eval/docu-sign/docu-sign';
+import { DocaPost } from '../pages/sign-eval/doca-post/doca-post';
 import { Start } from '../pages/start/start';
 import { Synchro, StatSynchroModal } from '../pages/synchro/synchro';
 // pipes
@@ -73,6 +77,7 @@ import { Simu } from '../providers/simu/simu';
     Souscription, ClauseDetail,
     Synthese,
     SignApi,
+    SignEval, Identity, DocuSignPage, DocaPost,
     Start,
     Synchro, StatSynchroModal, Stat,
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
@@ -106,13 +111,14 @@ import { Simu } from '../providers/simu/simu';
     Souscription, ClauseDetail,
     Synthese,
     SignApi,
+    SignEval, Identity, DocuSignPage, DocaPost,
     Start,
     Synchro, StatSynchroModal,
     FlexDetail,
     PdfViewer,
     ImageView
   ],
-  providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch, 
-  SignServices,DocuSignServices, Simu]
+  providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch,
+    SignServices, DocuSignServices, Simu]
 })
 export class AppModule { }

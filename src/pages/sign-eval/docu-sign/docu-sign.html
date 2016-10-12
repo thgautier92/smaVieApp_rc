@@ -1,0 +1,48 @@
+<!--
+  Generated template for the DocuSign page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>docuSign</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h4>Opérations de signature pour : {{signSend.name}}</h4>
+	<div padding>
+		<ion-segment [(ngModel)]="opt">
+			<ion-segment-button text-wrap *ngFor="let api of lstApi" [value]="api.code">{{api.title}}</ion-segment-button>
+		</ion-segment>
+	</div>
+	<div [ngSwitch]="opt">
+		<div *ngSwitchCase="'lstEnvelopes'">
+			<button ion-button clear (click)="listEnvelopes(4)">Actualiser</button>
+			<ion-list>
+				<ion-item *ngFor="let item of lstEnvelopes['folderItems']">
+					{{item.subject}}
+				</ion-item>
+			</ion-list>
+		</div>
+		<div *ngSwitchCase="'sign'">
+			<ion-item>
+				<ion-label>Modèle de document</ion-label>
+				<ion-select [(ngModel)]="signSend.docModel" okText="Choisir" cancelText="Annuler">
+					<ion-option *ngFor="let m of lstModels['envelopeTemplates']" [value]="m.templateId">{{m.name}}</ion-option>
+				</ion-select>
+				<button ion-button clear item-right icon-left (click)="getLstModel()"><ion-icon name="refresh"></ion-icon></button>
+			</ion-item>
+		</div>
+		<div *ngSwitchCase="'dwnDoc'">
+
+		</div>
+		<div *ngSwitchCase="'dwnProof'">
+
+		</div>
+	</div>
+</ion-content>

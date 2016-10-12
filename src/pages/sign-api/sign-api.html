@@ -13,41 +13,47 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	<h2>Données nécéssaires pour la signature</h2>
-	<form name="form_input" class="css-form" novalidate>
-		<ion-row>
-			<ion-col>
-				<ion-list>
-					<ion-item>
-						<ion-label stacked>Nom du destinataire</ion-label>
-						<ion-input type="text"></ion-input>
-					</ion-item>
-					<ion-item>
-						<ion-label stacked>Email</ion-label>
-						<ion-input type="email"></ion-input>
-					</ion-item>
-					<ion-item>
-						<ion-label stacked>Titre du message</ion-label>
-						<ion-input type="text"></ion-input>
-					</ion-item>
-				</ion-list>
-			</ion-col>
-			<ion-col>
-				<ion-item>
-					<ion-label stacked>Données à injecter</ion-label>
-					<ion-input type="text"></ion-input>
-				</ion-item>
-			</ion-col>
-		</ion-row>
-	</form>
+<ion-content padding class="sign-api">
+	<ion-card color="primary">
+		<ion-card-header>
+			<h2>Données nécéssaires pour la signature</h2>
+		</ion-card-header>
+		<ion-card-content>
+			<form name="form_sign" class="css-form" novalidate>
+				<ion-row>
+					<ion-col>
+						<ion-list>
+							<ion-item>
+								<ion-label floating>Nom du destinataire</ion-label>
+								<ion-input [(ngModel)]="signSend.name" type="text" name="name"></ion-input>
+							</ion-item>
+							<ion-item>
+								<ion-label floating>Email</ion-label>
+								<ion-input [(ngModel)]="signSend.email" type="email" name="email"></ion-input>
+							</ion-item>
+
+						</ion-list>
+					</ion-col>
+					<ion-col>
+						<ion-item>
+							<ion-label floating>Titre du message</ion-label>
+							<ion-input [(ngModel)]="signSend.title" type="text" name="title"></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label floating>Données à injecter</ion-label>
+							<ion-textarea [(ngModel)]="signSend.data" name="data"></ion-textarea>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+			</form>
+		</ion-card-content>
+	</ion-card>
 	<div padding>
 		<ion-segment [(ngModel)]="srv">
 			<ion-segment-button value="docusign">DocuSign</ion-segment-button>
 			<ion-segment-button value="docapost">DocaPost</ion-segment-button>
 		</ion-segment>
 	</div>
-
 	<div [ngSwitch]="srv">
 		<div *ngSwitchCase="'docusign'">
 			<ion-card>
@@ -55,23 +61,28 @@
 					<h2 color="primary">Evaluation de l'intégration des API DOCUSIGN</h2>
 				</ion-card-header>
 				<ion-card-content>
-					<ion-row>
-						<button ion-button clear (click)="getLstModel()"><ion-icon name="refresh"></ion-icon></button>
-						<ion-list>
-							<ion-item>
-								<ion-label>Modèle de document</ion-label>
-								<ion-select [(ngModel)]="docModel">
-									<ion-option *ngFor="let m of lstModels.envelopeTemplates" value="m.code">{{m.name}}</ion-option>
-								</ion-select>
-							</ion-item>
-						</ion-list>
-					</ion-row>
-					<ion-row>
-						<ion-col>
+					<ion-list>
+						<ion-item>
+							<ion-label>Modèle de document</ion-label>
+							<ion-select [(ngModel)]="signSend.docModel" okText="Choisir" cancelText="Annuler">
+								<ion-option *ngFor="let m of lstModels.envelopeTemplates" [value]="m.templateId">{{m.name}}</ion-option>
+							</ion-select>
+							<button ion-button clear item-right icon-left (click)="getLstModel()"><ion-icon name="refresh"></ion-icon></button>
+						</ion-item>
+					</ion-list>
+					<ion-row padding>
+						<ion-col width-30>
 							<h2>APIs evaluées</h2>
+							<ion-list>
+								<button ion-item (click)="listEnvelopes(4)">Lister les documents signés</button>
+								<button ion-item (click)="sendSign()">Signer un document</button>
+								<button ion-item (click)="downloadDocSign()">Télécharger le document</button>
+								<button ion-item (click)="downloadProofSign()">Télécharger la preuve</button>
+							</ion-list>
 						</ion-col>
-						<ion-col>
+						<ion-col width-70>
 							<h2>Résultats</h2>
+							<record [dataRecord]='detailApi'></record>
 						</ion-col>
 					</ion-row>
 				</ion-card-content>
