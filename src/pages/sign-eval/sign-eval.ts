@@ -22,7 +22,7 @@ export class SignEval {
   signSend: any = {};
   constructor(public navCtrl: NavController, public events:Events) {
     this.signSend = { 
-      "name": "Thierry GAUTIER", 
+      "name": "Doc GAUTIER", 
       "email": "doc.gautier@gmail.com", 
       "title": "Document à signer", 
       "data": "", 

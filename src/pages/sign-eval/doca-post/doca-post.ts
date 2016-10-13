@@ -18,5 +18,6 @@ export class DocaPost {
   ionViewDidLoad() {
     console.log('Hello DocaPost Page');
   }
+  openAdminCtrl(){}
 
 }

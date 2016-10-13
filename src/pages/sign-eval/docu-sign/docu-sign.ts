@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,Events } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { DocuSignServices } from '../../../providers/sign/docuSign';
-//import { Record } from '../../../components/record/record';
+import { Record } from '../../../components/record/record';
 
 /*
   Generated class for the DocuSign page.
@@ -20,9 +20,11 @@ export class DocuSignPage {
   saveModel: any;
   option: any = "lstEnvelopes";
   lstEnvelopes: any = [];
+  statusCode: any;
   dataAccount: any;
-  dataDoc:any={"default":true};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events:Events,private docuSign: DocuSignServices) {
+  dataEnv: any = null;
+  dataDoc: any = null;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public alertCtrl: AlertController, private docuSign: DocuSignServices) {
     this.signSend = this.navParams.get('model');
     this.saveModel = this.navParams.get('onSave');
     this.lstApi = [
@@ -30,12 +32,36 @@ export class DocuSignPage {
       { "code": "sign", "title": "Signer un nouveau document", "method": "" },
       { "code": "detail", "title": "Détail", "method": "" },
     ]
+    this.statusCode =
+      {
+        "created": "crée",
+        "deleted": "supprimée",
+        "sent": "envoyée",
+        "delivered": "livrée",
+        "signed": "signée",
+        "completed": "terminée",
+        "declined": "refusée",
+        "voided": "annulée",
+        "timedout": "hors délai",
+        "authoritativecopy": "copie autorisée",
+        "transfercompleted": "transfert terminé",
+        "template": "modèle",
+        "correct": "correcte"
+      };
   }
   ngOnInit() {
     this.getLstModel();
+    this.dataDoc = { "default": true };
   }
   ionViewDidLoad() {
     console.log('Hello DocuSign Page');
+  }
+  openAdminCtrl(){
+    let url="https://account-d.docusign.com/#/web/login";
+    window.open(url, '_system');
+  }
+  getStatus(code) {
+    return
   }
   listEnvelopes(folder) {
     this.docuSign.getListEnv(2016, 1, folder).then(response => {
@@ -56,7 +82,6 @@ export class DocuSignPage {
   }
   getDocSigned(item) {
     let id = item.envelopeId;
-    var dataSend = {};
     this.docuSign.getdocSigned(id).then(data => {
       //console.log(data);
       var file = new Blob([data], { type: 'application/pdf' });
@@ -78,16 +103,15 @@ export class DocuSignPage {
   }
   getDocData(item) {
     let id = item.envelopeId;
-    let dataSend = {};
-    this.dataDoc={};
+    this.dataDoc = {};
     this.docuSign.getdocSignedData(id).then(data => {
       //console.log(data);
       this.dataDoc['infoDoc'] = data;
       this.docuSign.getDocEvents(id).then(dataEvents => {
         //console.log(dataEvents);
         this.dataDoc['events'] = dataEvents;
-        console.log("Data for doc #",id,this.dataDoc);
-        this.option="detail";
+        //console.log("Data for doc #", id, this.dataDoc);
+        this.option = "detail";
       }, reason => {
         console.log('Failed: ' + JSON.stringify(reason));
       })
@@ -98,7 +122,7 @@ export class DocuSignPage {
   sendSign() {
     console.log("DOC", this.signSend);
     if (this.signSend.docModel) {
-      let dataEnv = null;
+      this.dataEnv = null;
       var dataSend = {
         "status": "sent",
         "emailBlurb": "Vous avez un document à signer. Merci de votre confiance.",
@@ -110,11 +134,37 @@ export class DocuSignPage {
       };
       this.docuSign.sendSignEnv(dataSend).then(response => {
         console.log(response);
-        dataEnv = response;
+        this.dataEnv = response;
         this.signSend['envId'] = response['envelopeId'];
+        console.log("Context data", this.signSend);
       }, function (reason) {
         console.log("List Envelopes error", reason);
       });
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Modèle de documents',
+        subTitle: 'Veuillez choisir un modèle de document dans la liste',
+        buttons: ["J'ai compris"]
+      });
+      alert.present();
+    }
+  };
+  signClient(envelopeId) {
+    if (envelopeId) {
+      var dataSend = {
+        "email": this.signSend.email,
+        "userName": this.signSend.name,
+        "returnUrl": "http://gautiersa.fr/vie/docuSignReturn",
+        "authenticationMethod": "email",
+        "clientUserId": "1001"
+      }
+      this.docuSign.destSignEnv(envelopeId, dataSend).then(data => {
+        console.log(data);
+        this.sendSign['urlSign'] = data['url'];
+        window.open(data['url'], '_system');
+      }, reason => {
+        console.log('Failed: ' + JSON.stringify(reason));
+      })
     }
   };
   infoAccount() {

@@ -28,14 +28,16 @@ export class Record {
     this.resultDiv = this.result.nativeElement;
   }
   ngOnChanges(changes: any) {
-    //console.log(changes);
+    //console.log("Record Change",changes);
     this.dataJson = changes['dataRecord'].currentValue;
+    this.resultDiv = this.result.nativeElement;
     this.render(this.dataJson, this.levelOpen);
   }
   levelChange() {
     this.render(this.dataJson, this.levelOpen);
   }
   render(data, level) {
+    //console.log("Render",data,level, this.resultDiv);
     if (this.resultDiv) {
       try {
         this.formatter = new JSONFormatter(data, level);
