@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,Events } from 'ionic-angular';
 import { Identity } from './identity/identity'
 import { DocuSignPage } from './docu-sign/docu-sign'
 import { DocaPost } from './doca-post/doca-post'
@@ -20,7 +20,7 @@ export class SignEval {
   tab2Root: any = DocuSignPage;
   tab3Root: any = DocaPost;
   signSend: any = {};
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public events:Events) {
     this.signSend = { 
       "name": "Thierry GAUTIER", 
       "email": "doc.gautier@gmail.com", 

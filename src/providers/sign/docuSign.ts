@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Request, RequestMethod, ResponseContentType } from '@angular/http';
 import { Platform } from 'ionic-angular';
+
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -161,7 +162,7 @@ export class DocuSignServices {
             api = api.replace("#envelopeId#", envelopeId);
            let url = this.rootApi + "/" + api;
             this.options.method = RequestMethod.Get;
-            this.options.responseType = ResponseContentType.Json;
+            this.options.responseType = ResponseContentType.Blob;
             this.http.request(url, this.options)
                 .map(res => res.json())
                 .subscribe(data => {

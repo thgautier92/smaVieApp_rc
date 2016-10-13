@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,Events } from 'ionic-angular';
 import { DocuSignServices } from '../../../providers/sign/docuSign';
-import { Record } from '../../../components/record/record';
+//import { Record } from '../../../components/record/record';
 
 /*
   Generated class for the DocuSign page.
@@ -18,23 +18,22 @@ export class DocuSignPage {
   signSend: any;
   lstModels: any;
   saveModel: any;
-  option: any = "sign";
+  option: any = "lstEnvelopes";
   lstEnvelopes: any = [];
   dataAccount: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private docuSign: DocuSignServices) {
+  dataDoc:any={"default":true};
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events:Events,private docuSign: DocuSignServices) {
     this.signSend = this.navParams.get('model');
     this.saveModel = this.navParams.get('onSave');
     this.lstApi = [
       { "code": "lstEnvelopes", "title": "Historique des signatures", "method": "" },
-      { "code": "sign", "title": "Signer un document", "method": "" },
-      { "code": "dwnDoc", "title": "Télécharger le document signé", "method": "" },
-      { "code": "dwnProof", "title": "Télécharger la preuve", "method": "" }
+      { "code": "sign", "title": "Signer un nouveau document", "method": "" },
+      { "code": "detail", "title": "Détail", "method": "" },
     ]
   }
   ngOnInit() {
     this.getLstModel();
   }
-
   ionViewDidLoad() {
     console.log('Hello DocuSign Page');
   }
@@ -53,6 +52,47 @@ export class DocuSignPage {
       this.lstModels = response;
     }, error => {
       console.log("Templates error", error);
+    })
+  }
+  getDocSigned(item) {
+    let id = item.envelopeId;
+    var dataSend = {};
+    this.docuSign.getdocSigned(id).then(data => {
+      //console.log(data);
+      var file = new Blob([data], { type: 'application/pdf' });
+      let pdfUrl = URL.createObjectURL(file);
+      window.open(pdfUrl, '_system', 'location=yes');
+    }, reason => {
+      console.log('Failed: ' + JSON.stringify(reason));
+    })
+  }
+  signSender(item) {
+    let id = item.envelopeId;
+    var dataSend = {};
+    this.docuSign.senderSignEnv(id, dataSend).then(data => {
+      console.log(data);
+      window.open(data['url'], '_system');
+    }, reason => {
+      console.log('Failed: ' + JSON.stringify(reason));
+    })
+  }
+  getDocData(item) {
+    let id = item.envelopeId;
+    let dataSend = {};
+    this.dataDoc={};
+    this.docuSign.getdocSignedData(id).then(data => {
+      //console.log(data);
+      this.dataDoc['infoDoc'] = data;
+      this.docuSign.getDocEvents(id).then(dataEvents => {
+        //console.log(dataEvents);
+        this.dataDoc['events'] = dataEvents;
+        console.log("Data for doc #",id,this.dataDoc);
+        this.option="detail";
+      }, reason => {
+        console.log('Failed: ' + JSON.stringify(reason));
+      })
+    }, reason => {
+      console.log('Failed: ' + JSON.stringify(reason));
     })
   }
   sendSign() {
