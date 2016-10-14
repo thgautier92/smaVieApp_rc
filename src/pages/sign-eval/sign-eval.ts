@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,Events } from 'ionic-angular';
+import { NavController, Events } from 'ionic-angular';
 import { Identity } from './identity/identity'
 import { DocuSignPage } from './docu-sign/docu-sign'
 import { DocaPost } from './doca-post/doca-post'
@@ -15,23 +15,21 @@ import { DocaPost } from './doca-post/doca-post'
   templateUrl: 'sign-eval.html'
 })
 export class SignEval {
-
   tab1Root: any = Identity;
   tab2Root: any = DocuSignPage;
   tab3Root: any = DocaPost;
   signSend: any = {};
-  constructor(public navCtrl: NavController, public events:Events) {
-    this.signSend = { 
-      "name": "Doc GAUTIER", 
-      "email": "doc.gautier@gmail.com", 
-      "title": "Document à signer", 
-      "data": "", 
+  constructor(public navCtrl: NavController, public events: Events) {
+    this.signSend = {
+      "name": "Doc GAUTIER",
+      "email": "doc.gautier@gmail.com",
+      "mobile": "0699216805",
+      "title": "Document à signer",
+      "data": "",
       "docModel": "",
-      "envId":""
-     }
+      "envId": ""
+    }
   }
-  saveModel(){
-
+  saveModel() {
   }
-
 }

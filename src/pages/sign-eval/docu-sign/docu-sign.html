@@ -114,6 +114,18 @@
 			<record [dataRecord]='dataDoc'></record>
 			<!-- <pre>{{dataDoc | json}}</pre> -->
 		</div>
+		<div *ngSwitchCase="'model'">
+			<a href="https://apiexplorer.docusign.com/#/" target="_blank">DocuSign Api Explorer</a> Caractéristiques d'un modele
+			<ion-item>
+				<ion-label>Modèle de document</ion-label>
+				<ion-select [(ngModel)]="signSend.docModel" okText="Choisir" cancelText="Annuler">
+					<ion-option *ngFor="let m of lstModels['envelopeTemplates']" [value]="m.templateId">{{m.name}}</ion-option>
+				</ion-select>
+				<button ion-button clear item-right icon-left (click)="getLstModel()"><ion-icon name="refresh"></ion-icon></button>
+			</ion-item>
+			<record [dataRecord]='dataModel'></record>
+			<!-- <pre>{{dataDoc | json}}</pre> -->
+		</div>
 	</div>
 
 </ion-content>

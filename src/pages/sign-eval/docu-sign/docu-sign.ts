@@ -31,6 +31,7 @@ export class DocuSignPage {
       { "code": "lstEnvelopes", "title": "Historique des signatures", "method": "" },
       { "code": "sign", "title": "Signer un nouveau document", "method": "" },
       { "code": "detail", "title": "Détail", "method": "" },
+      { "code": "model", "title": "Modèles", "method": "" },
     ]
     this.statusCode =
       {
@@ -56,8 +57,8 @@ export class DocuSignPage {
   ionViewDidLoad() {
     console.log('Hello DocuSign Page');
   }
-  openAdminCtrl(){
-    let url="https://account-d.docusign.com/#/web/login";
+  openAdminCtrl() {
+    let url = "https://account-d.docusign.com/#/web/login";
     window.open(url, '_system');
   }
   getStatus(code) {
