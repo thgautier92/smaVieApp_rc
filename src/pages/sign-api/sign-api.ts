@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DocuSignServices } from '../../providers/sign/docuSign';
-import { Record } from '../../components/record/record';
+//import { Record } from '../../components/record/record';
 
 /*
   Generated class for the SignApi page.
@@ -19,7 +19,7 @@ export class SignApi {
   docModel: any = "";
   signSend: any = {};
   lstEnvelopes: any = [];
-  envId:any=null;
+  envId: any = null;
   dataAccount: any = null;
   lstApi: any;
   srv: any;
@@ -72,7 +72,7 @@ export class SignApi {
           { "email": this.signSend.email, "name": this.signSend.name, "roleName": "signataire", "clientUserId": "1001" }
         ]
       };
-      this.docuSign.sendSignEnv(dataSend).then(response=> {
+      this.docuSign.sendSignEnv(dataSend).then(response => {
         console.log(response);
         dataEnv = response;
         this.envId = response['envelopeId'];

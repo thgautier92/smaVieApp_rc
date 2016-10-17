@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { DocuSignServices } from '../../../providers/sign/docuSign';
-import { Record } from '../../../components/record/record';
+//import { Record } from '../../../components/record/record';
 
 /*
   Generated class for the DocuSign page.

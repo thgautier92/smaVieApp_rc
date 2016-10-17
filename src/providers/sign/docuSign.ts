@@ -10,6 +10,7 @@ export class DocuSignServices {
     account: any;
     httpApi: Request;
     options: RequestOptions;
+    statusCode: any;
     constructor(private http: Http, public platform: Platform) {
         this.rootApi = "https://demo.docusign.net/restapi/v2";
         if (this.platform.is('core')) {
@@ -28,8 +29,7 @@ export class DocuSignServices {
         this.options = new RequestOptions({});
         this.options.headers = httpHeader;
         this.options.withCredentials = true;
-
-        let statusCode =
+        this.statusCode =
             {
                 "created": "crée",
                 "deleted": "supprimée",
@@ -45,6 +45,9 @@ export class DocuSignServices {
                 "template": "modèle",
                 "correct": "correcte"
             };
+    }
+    getStatus(code) {
+        return this.statusCode[code];
     }
     getAccount() {
         return new Promise((resolve, reject) => {
@@ -87,7 +90,7 @@ export class DocuSignServices {
             this.options.method = RequestMethod.Post;
             this.options.responseType = ResponseContentType.Json;
             this.options.body = dataSend;
-            this.http.request(url,this.options)
+            this.http.request(url, this.options)
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);
@@ -126,7 +129,7 @@ export class DocuSignServices {
             this.options.method = RequestMethod.Post;
             this.options.responseType = ResponseContentType.Json;
             this.options.body = dataSend;
-            this.http.request(url,this.options)
+            this.http.request(url, this.options)
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);
@@ -145,7 +148,7 @@ export class DocuSignServices {
             this.options.method = RequestMethod.Post;
             this.options.responseType = ResponseContentType.Json;
             this.options.body = dataSend;
-            this.http.request(url,this.options)
+            this.http.request(url, this.options)
                 .map(res => res.json())
                 .subscribe(data => {
                     resolve(data);
@@ -160,7 +163,7 @@ export class DocuSignServices {
             var api = "accounts/#account#/envelopes/#envelopeId#/documents/combined?certificate=true&include_metadata=true&language=fr&show_changes=true"
             api = api.replace("#account#", this.account);
             api = api.replace("#envelopeId#", envelopeId);
-           let url = this.rootApi + "/" + api;
+            let url = this.rootApi + "/" + api;
             this.options.method = RequestMethod.Get;
             this.options.responseType = ResponseContentType.Blob;
             this.http.request(url, this.options)
