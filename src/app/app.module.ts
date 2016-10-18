@@ -26,10 +26,6 @@ import { Souscription, ClauseDetail } from '../pages/rdv/souscription/souscripti
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
 import { SignApi } from '../pages/sign-api/sign-api';
-import { SignEval } from '../pages/sign-eval/sign-eval';
-import { Identity } from '../pages/sign-eval/identity/identity';
-import { DocuSignPage } from '../pages/sign-eval/docu-sign/docu-sign';
-import { DocaPost } from '../pages/sign-eval/doca-post/doca-post';
 import { Start } from '../pages/start/start';
 import { Synchro, StatSynchroModal } from '../pages/synchro/synchro';
 // pipes
@@ -51,7 +47,6 @@ import { JsonDemo } from '../providers/json-demo/json-demo';
 import { Paramsdata } from '../providers/params-data/params-data';
 import { Pouch } from '../providers/pouch/pouch';
 import { SignServices } from '../providers/sign/sign';
-import { DocuSignServices } from '../providers/sign/docuSign';
 import { Simu } from '../providers/simu/simu';
 
 @NgModule({
@@ -77,7 +72,6 @@ import { Simu } from '../providers/simu/simu';
     Souscription, ClauseDetail,
     Synthese,
     SignApi,
-    SignEval, Identity, DocuSignPage, DocaPost,
     Start,
     Synchro, StatSynchroModal, Stat,
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
@@ -111,7 +105,6 @@ import { Simu } from '../providers/simu/simu';
     Souscription, ClauseDetail,
     Synthese,
     SignApi,
-    SignEval, Identity, DocuSignPage, DocaPost,
     Start,
     Synchro, StatSynchroModal,
     FlexDetail,
@@ -119,6 +112,6 @@ import { Simu } from '../providers/simu/simu';
     ImageView
   ],
   providers: [Storage, CalcTools, DisplayTools, InfoDevice, CouchDbServices, JsonDemo, Paramsdata, Pouch,
-    SignServices, DocuSignServices, Simu]
+    SignServices, Simu]
 })
 export class AppModule { }
