@@ -25,7 +25,6 @@ import { Simuler, SimulerDetail } from '../pages/rdv/simuler/simuler';
 import { Souscription, ClauseDetail } from '../pages/rdv/souscription/souscription';
 import { Synthese } from '../pages/rdv/synthese/synthese';
 
-import { SignApi } from '../pages/sign-api/sign-api';
 import { Start } from '../pages/start/start';
 import { Synchro, StatSynchroModal } from '../pages/synchro/synchro';
 // pipes
@@ -71,7 +70,6 @@ import { Simu } from '../providers/simu/simu';
     Simuler, SimulerDetail,
     Souscription, ClauseDetail,
     Synthese,
-    SignApi,
     Start,
     Synchro, StatSynchroModal, Stat,
     ValuesPipe, arrayByKeyPipe, binaryData, groupBy, KeysPipe, maxByKeyPipe, textToDate,
@@ -104,7 +102,6 @@ import { Simu } from '../providers/simu/simu';
     Simuler, SimulerDetail,
     Souscription, ClauseDetail,
     Synthese,
-    SignApi,
     Start,
     Synchro, StatSynchroModal,
     FlexDetail,
